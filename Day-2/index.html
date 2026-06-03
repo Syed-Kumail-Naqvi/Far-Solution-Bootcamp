@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+</head>
+<body>
+    <h1>Registration Form</h1>
+
+    <form id="regForm">
+        <label>Full Name *</label><br>
+        <input type="text" id="fullname" name="fullname" required><br><br>
+
+        <label>Email *</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label>Password * (min 6 chars)</label><br>
+        <input type="password" id="password" name="password" minlength="6" required><br><br>
+
+        <label>Confirm Password *</label><br>
+        <input type="password" id="confirm" required><br>
+        <span id="passError" style="color:red;"></span><br><br>
+
+        <label>Country *</label><br>
+        <select id="country" required>
+            <option value="">Select</option>
+            <option>Pakistan</option>
+            <option>India</option>
+            <option>USA</option>
+            <option>UK</option>
+        </select><br><br>
+
+        <label>Gender *</label><br>
+        <input type="radio" name="gender" value="Male" required> Male
+        <input type="radio" name="gender" value="Female"> Female
+        <input type="radio" name="gender" value="Other"> Other<br><br>
+
+        <label>Hobbies</label><br>
+        <input type="checkbox" name="hobby" value="Reading"> Reading
+        <input type="checkbox" name="hobby" value="Traveling"> Traveling
+        <input type="checkbox" name="hobby" value="Sports"> Sports<br><br>
+
+        <label>Date of Birth</label><br>
+        <input type="date" id="dob"><br><br>
+
+        <label>
+            <input type="checkbox" id="terms" required> I accept Terms & Conditions *
+        </label><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <hr>
+
+    <h2>Preview</h2>
+    <table border="1">
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>Full Name</td><td id="previewName">-</td></tr>
+        <tr><td>Email</td><td id="previewEmail">-</td></tr>
+        <tr><td>Country</td><td id="previewCountry">-</td></tr>
+        <tr><td>Gender</td><td id="previewGender">-</td></tr>
+        <tr><td>Hobbies</td><td id="previewHobbies">-</td></tr>
+        <tr><td>Date of Birth</td><td id="previewDob">-</td></tr>
+        <tr><td>Terms Accepted</td><td id="previewTerms">No</td></tr>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>

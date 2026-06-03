@@ -5,3 +5,4 @@ This repository contains my daily assignments, mini projects, and capstone proje
 ## Progress
 
 Day 1 - Semantic HTML (Company's Page Clone)
+Day 2 - Registeration Form With Tables and Validation
