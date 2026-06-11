@@ -1,0 +1,77 @@
+Day 9 - Transitions & Animations
+
+Topics Covered:
+- CSS transitions (property, duration, timing-function, delay)
+- CSS keyframe animations (@keyframes)
+- transform property (scale, rotate, translate)
+- hover effects on buttons, cards, links
+- smooth scrolling (scroll-behavior)
+- fade-in animations for page load
+
+Changes made in day-1/style.css:
+
+1. Added smooth scrolling to HTML:
+   html { scroll-behavior: smooth; }
+
+2. Button hover transition:
+   .btn, button {
+       transition: all 0.3s ease;
+   }
+   button:hover {
+       background-color: #0056b3;
+       transform: scale(1.05);
+   }
+
+3. Card hover effect (services, Envo products):
+   .card, .service-card, .envo-card {
+       transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+   .card:hover {
+       transform: translateY(-5px);
+       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+   }
+
+4. Navbar link hover underline animation:
+   nav ul li a {
+       transition: color 0.3s ease;
+       position: relative;
+   }
+   nav ul li a::after {
+       content: '';
+       position: absolute;
+       bottom: -5px;
+       left: 0;
+       width: 0%;
+       height: 2px;
+       background: #007bff;
+       transition: width 0.3s ease;
+   }
+   nav ul li a:hover::after {
+       width: 100%;
+   }
+
+5. Hero section fade-in animation on page load:
+   @keyframes fadeInUp {
+       from {
+           opacity: 0;
+           transform: translateY(30px);
+       }
+       to {
+           opacity: 1;
+           transform: translateY(0);
+       }
+   }
+   .hero {
+       animation: fadeInUp 0.8s ease-out;
+   }
+
+6. Optional: Added loading spinner or pulse animation (if any).
+
+Key Learnings:
+- transition changes property values smoothly over time.
+- animation uses keyframes to define multiple steps.
+- transform does NOT affect layout (doesn't move other elements).
+- Use will-change for performance on elements that animate often.
+- Don't over-animate — keep it subtle and professional.
+
+Date: 9th June 2026
