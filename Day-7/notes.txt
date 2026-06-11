@@ -1,0 +1,38 @@
+Day 7 - Responsive Design (Mobile First)
+
+Topics Covered:
+- Mobile-first approach
+- Media queries (@media)
+- Breakpoints (min-width)
+- Viewport meta tag
+- Fluid images and containers
+- Flexbox/Grid wrapping for responsiveness
+
+Changes made in day-1/style.css:
+
+1. Added viewport meta tag in HTML (already there from Day 1)
+
+2. Mobile-first base styles (for screens < 768px):
+   - Body font size: 16px
+   - Navbar: stacked vertically (flex-direction: column)
+   - Cards: full width (width: 100%)
+   - Buttons: full width
+   - Sections padding: 20px
+
+3. Added media query for tablets (min-width: 768px):
+   .navbar { flex-direction: row; justify-content: space-between; }
+   .services-container { display: flex; flex-wrap: wrap; gap: 20px; }
+   .service-card { flex: 1; min-width: 200px; }
+
+4. Added media query for desktops (min-width: 1024px):
+   .container { max-width: 1200px; margin: 0 auto; }
+   .service-card { flex: 1; min-width: 250px; }
+   .envo-container { display: flex; justify-content: center; gap: 30px; }
+
+Key Learnings:
+- Mobile-first means write base styles for mobile, then add media queries with min-width for larger screens.
+- Always use relative units (rem, %, vw) instead of fixed pixels for responsive design.
+- Test using browser dev tools (toggle device toolbar).
+- Flexbox wrap + media queries = powerful responsive layouts.
+
+Date: 7th June 2026
