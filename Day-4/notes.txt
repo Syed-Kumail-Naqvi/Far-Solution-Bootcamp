@@ -1,0 +1,31 @@
+Day 4 - CSS Selectors & Box Model
+
+Topics Covered:
+- CSS Selectors: element, class, id, descendant, grouping
+- Box Model: margin, padding, border, content
+- Inline vs block elements
+- Adding external CSS file to HTML
+
+Changes made in day-1/index.html:
+1. Created style.css and linked it in <head>
+2. Used element selectors: body, h1, h2, h3, p, ul, li, button
+3. Used class selectors: .container, .card, .btn-primary, .nav-links
+4. Used ID selector: #hero (for hero section)
+5. Applied box model:
+   - margin: to create space between sections
+   - padding: inside cards and buttons
+   - border: around cards and input fields
+6. Set background colors, font families, text colors
+7. Made buttons rounded with border-radius
+8. Centered content using margin: auto on containers
+
+CSS File Location: day-1/style.css
+
+Key Learnings:
+- Margin collapses, padding doesn't
+- Use * selector for resetting box-sizing: border-box
+- Class selectors are reusable, IDs are unique
+- Descendant selector (.parent .child) targets nested elements
+- Grouping (h1, h2, h3) applies same styles to multiple elements
+
+Date: 4th June 2026
