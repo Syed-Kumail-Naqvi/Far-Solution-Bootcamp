@@ -1,0 +1,34 @@
+Day 5 - Flexbox
+
+Topics Covered:
+- display: flex
+- flex-direction (row, column)
+- justify-content (center, space-between, space-around, space-evenly)
+- align-items (center, stretch, flex-start, flex-end)
+- flex-wrap (wrap, nowrap)
+- gap property
+- Ordering with order property
+
+Changes made in day-1/index.html and day-1/style.css:
+
+1. Converted navbar to flex:
+   - .navbar { display: flex; justify-content: space-between; align-items: center; }
+
+2. Services section cards using flex:
+   - .services-container { display: flex; flex-wrap: wrap; gap: 20px; }
+   - .service-card { flex: 1; min-width: 250px; }
+
+3. Envo product cards flex layout:
+   - .envo-container { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+   - .envo-card { flex: 1; min-width: 200px; }
+
+4. Contact section button aligned using flex.
+
+Key Learnings:
+- Flex is one-dimensional (row or column)
+- justify-content works on main axis
+- align-items works on cross axis
+- flex-wrap: wrap makes responsive without media queries
+- gap is easier than margin
+
+Date: 5th June 2026
