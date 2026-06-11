@@ -1,0 +1,36 @@
+Day 6 - CSS Grid (Theory Only, No Code Update)
+
+Topics Covered:
+- display: grid
+- grid-template-columns (repeat(), fr units, px, %)
+- grid-template-rows
+- gap (row-gap, column-gap)
+- grid-column / grid-row (spanning cells)
+- justify-items / align-items
+- justify-self / align-self
+- grid-template-areas
+
+Key Learnings (Theoretical):
+
+1. Grid is two-dimensional (rows AND columns). Flexbox is one-dimensional.
+2. fr unit = fractional space (similar to flex: 1 in Flexbox).
+3. repeat(3, 1fr) creates three equal columns.
+4. Use gap instead of margin for spacing between grid cells.
+5. Grid is better for overall page layout (header, sidebar, main, footer). Flexbox is better for component internal alignment.
+
+Example Syntax (for understanding only - not implemented today):
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.item:first-child {
+    grid-column: span 2;
+}
+
+Today's Decision: 
+No actual CSS changes made to Far Solutions website. Only learned Grid concepts. Will apply in future when needed.
+
+Date: 6th June 2026
