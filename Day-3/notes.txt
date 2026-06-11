@@ -1,0 +1,16 @@
+Day 3 - SEO Fundamentals
+
+Topics Covered:
+- Meta description, keywords, author
+- Title tag optimization
+- Alt attributes for images
+- Heading hierarchy
+
+Changes made in day-1/index.html:
+1. Added <meta name="description" content="...">
+2. Added <meta name="keywords" content="...">
+3. Added <meta name="author" content="Far Solutions">
+4. Ensured all <img> have alt text.
+5. Fixed heading: only one <h1> in hero section.
+
+Date: 3rd June 2026
