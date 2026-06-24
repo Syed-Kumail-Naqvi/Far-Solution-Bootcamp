@@ -1,0 +1,29 @@
+Day 12 - Functions & Scope
+
+Topics Covered:
+- Function Declaration (function name() {})
+- Function Expression (const name = function() {})
+- Arrow Functions (const name = () => {})
+- Parameters and Arguments
+- Return Statement
+- Scope: Global vs Local
+- Block Scope (let, const)
+
+Key Learnings:
+- Use function declarations for named reusable functions.
+- Arrow functions are shorter and don't bind their own 'this'.
+- Variables declared with 'var' are function-scoped, 'let' and 'const' are block-scoped.
+- Functions can return values that can be used later.
+- Good practice: each function should do one thing only.
+
+Assignment Done:
+Created utility functions:
+1. add(a, b) - returns sum
+2. subtract(a, b) - returns difference
+3. multiply(a, b) - returns product
+4. divide(a, b) - returns quotient (with division by zero check)
+5. isEven(num) - returns true if even
+6. capitalize(str) - capitalizes first letter
+7. reverseString(str) - reverses a string
+8. factorial(num) - returns factorial of a number
+9. randomInt(min, max) - returns random integer between min and max

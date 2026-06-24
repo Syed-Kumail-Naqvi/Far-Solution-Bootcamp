@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 12 - Functions & Scope (Utility Functions)</title>
+</head>
+<body>
+    <h1 style="color: #036537; text-align: center; margin-top: 50px;">Day 12 - Functions & Scope</h1>
+    <p style="text-align: center;">Open Console (F12) to see output.</p>
+
+    <script>
+        // ===============================
+        // 1. FUNCTION DECLARATION
+        // ===============================
+        function add(a, b) {
+            return a + b;
+        }
+
+        function subtract(a, b) {
+            return a - b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function divide(a, b) {
+            if (b === 0) {
+                return "Error: Division by zero";
+            }
+            return a / b;
+        }
+
+        // ===============================
+        // 2. FUNCTION EXPRESSION
+        // ===============================
+        const isEven = function(num) {
+            return num % 2 === 0;
+        };
+
+        // ===============================
+        // 3. ARROW FUNCTION (ES6)
+        // ===============================
+        const capitalize = (str) => {
+            if (str.length === 0) return "";
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        };
+
+        const reverseString = (str) => {
+            return str.split('').reverse().join('');
+        };
+
+        const factorial = (num) => {
+            if (num < 0) return "Error: Negative number";
+            if (num === 0 || num === 1) return 1;
+            let result = 1;
+            for (let i = 2; i <= num; i++) {
+                result *= i;
+            }
+            return result;
+        };
+
+        const randomInt = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+
+        // ===============================
+        // 4. SCOPE DEMO
+        // ===============================
+        let globalVar = "I am global"; // Global scope
+
+        function scopeDemo() {
+            let localVar = "I am local"; // Local scope (only accessible inside this function)
+            console.log("Inside function - globalVar:", globalVar);
+            console.log("Inside function - localVar:", localVar);
+        }
+
+        // ===============================
+        // 5. TESTING UTILITY FUNCTIONS
+        // ===============================
+        console.log("========== UTILITY FUNCTIONS TEST ==========");
+
+        console.log("\n--- Arithmetic ---");
+        console.log(`add(10, 5) =`, add(10, 5));
+        console.log(`subtract(10, 5) =`, subtract(10, 5));
+        console.log(`multiply(10, 5) =`, multiply(10, 5));
+        console.log(`divide(10, 5) =`, divide(10, 5));
+        console.log(`divide(10, 0) =`, divide(10, 0));
+
+        console.log("\n--- Even/Odd Check ---");
+        console.log(`isEven(4) =`, isEven(4));
+        console.log(`isEven(7) =`, isEven(7));
+
+        console.log("\n--- String Utilities ---");
+        console.log(`capitalize("farhan") =`, capitalize("farhan"));
+        console.log(`reverseString("hello") =`, reverseString("hello"));
+        console.log(`isPalindrome("racecar") =`, isPalindrome("racecar"));
+        console.log(`isPalindrome("hello") =`, isPalindrome("hello"));
+
+        console.log("\n--- Math Utilities ---");
+        console.log(`factorial(5) =`, factorial(5));
+        console.log(`factorial(0) =`, factorial(0));
+        console.log(`randomInt(1, 10) =`, randomInt(1, 10));
+
+        console.log("\n--- Scope Demo ---");
+        scopeDemo();
+        console.log("globalVar outside function:", globalVar);
+
+        console.log("\n========== ALL TESTS PASSED ==========");
+    </script>
+</body>
+</html>
