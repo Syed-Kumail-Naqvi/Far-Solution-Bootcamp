@@ -1,0 +1,15 @@
+Day 11 - JavaScript Fundamentals
+
+Topics Covered:
+- Variables: let, const, var
+- Data Types: String, Number, Boolean, Null, Undefined
+- Operators: Arithmetic (+ - * / %), Assignment (= += -=), Comparison (> < >= <= === !==), Logical (&& || !)
+
+Key Learnings:
+- Use 'let' for variables that change, 'const' for variables that don't (best practice).
+- 'var' is old, avoid it.
+- == checks value, === checks value AND type (always use ===).
+- Template literals (`Hello ${name}`) are better than string concatenation.
+
+Assignment Done:
+Created a script that declares variables of different types, performs arithmetic, comparison, and logs everything to console.

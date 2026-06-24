@@ -1,96 +1,194 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Far Solutions</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Far Solutions - Leading software house specializing in web development, mobile apps, AI solutions. We build the future through innovative technology.">
+    <meta name="keywords" content="web development, mobile apps, AI, chatbot, MERN, React, Next.js, Envo">
+    <meta name="author" content="Far Solutions">
+    <title>Far Solutions | Build the Future</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
-    <header>
-        <nav>
-            <img src="https://via.placeholder.com/50" alt="Comapny's Logo" />
-            <ul>
-                <li>Home</li>
-                <li>Services</li>
-                <li>Products</li>
-                <li>About</li>
-                <li>Contact</li>
-            </ul>
-            <button>Get Started</button>
-        </nav>
-    </header>
 
-        <!-- Main Contnt -->
-        <main>
-            <!-- Section 1 -->
-            <section>
-                <h1>We Build The Future</h1>
-                <p>
-                    Far Solutions is a leading software house specializing in innovative
-                    web development, mobile applications, and cutting-edge AI solutions.
-                    We transform ideas into digital reality.
-                </p>
+<div class="container">
+    <!-- Navbar - sticky (handled by CSS) -->
+    <nav>
+        <div class="logo">Far<span>Solutions</span></div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="btn-primary">Get Started</button>
+    </nav>
 
-                <img src="https://via.placeholder.com/50" alt="ENVO" />
-            </section>
+    <main>
+        <!-- Section 1: Hero (Dark background #1E2023) -->
+        <div class="hero-section">
+            <div class="hero">
+                <div class="hero-left">
+                    <div class="founded-badge">Founded in 2022 – Karachi, Pakistan</div>
+                    <h1>We Build <span>The Future</span></h1>
+                    <p>Far Solutions is a leading software house specializing in innovative web development, mobile applications, and cutting-edge AI solutions. We transform ideas into digital reality.</p>
+                    <div class="button-group">
+                        <button class="btn-primary">Explore Envo Suite</button>
+                        <button class="btn-secondary">Our Services</button>
+                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i> Karachi, Pakistan
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <img src="https://placehold.co/500x350/2a2a2b/036537?text=ENVO+Suite" alt="ENVO Illustration">
+                </div>
+            </div>
+        </div>
 
-            <!-- Section 2 -->
-            <section>
-                <h2>Comprehensive Software Solutions</h2>
-                <p>
-                    From concept to deployment, we deliver end-to-end software solutions
-                    using the latest technologies and industry best practices.
-                </p>
-            </section>
+        <!-- Section 2: Expertise (Normal background) -->
+        <div class="expertise-section">
+            <div style="text-align: center;">
+                <div class="section-badge">Our Expertise</div>
+                <h2 class="section-title">Comprehensive Software Solutions</h2>
+                <p class="section-sub">From concept to deployment, we deliver end-to-end software solutions using the latest technologies and industry best practices.</p>
+            </div>
 
-            <!-- Section 3 -->
-            <section>
-                <div>
-                    <img src="https://via.placeholder.com/50" alt="World">
-                    <h3>Web Development</h3>
-                    <p>
-                        Modern, responsive websites and web applications built with cutting-edge technologies.
-                    </p>
+            <div class="cards-grid">
+                <div class="card"><i class="fas fa-code"></i><h3>Web Development</h3><p>Modern, responsive websites and web applications built with cutting-edge technologies.</p><div class="tech-stack"><span>React.js</span><span>Next.js</span><span>Node.js</span><span>WordPress</span></div></div>
+                <div class="card"><i class="fas fa-mobile-alt"></i><h3>Mobile App Development</h3><p>Native and cross-platform mobile applications for iOS and Android.</p><div class="tech-stack"><span>React Native</span><span>Flutter</span><span>Java</span><span>Swift</span></div></div>
+                <div class="card"><i class="fas fa-layer-group"></i><h3>Full Stack Development</h3><p>End-to-end application development using the MERN stack and modern frameworks.</p><div class="tech-stack"><span>MongoDB</span><span>Express.js</span><span>React</span><span>Node.js</span></div></div>
+                <div class="card"><i class="fas fa-robot"></i><h3>AI & Chatbot Development</h3><p>Intelligent chatbots and AI solutions to automate and enhance user experiences.</p><div class="tech-stack"><span>Python</span><span>TensorFlow</span><span>NLP</span><span>Machine Learning</span></div></div>
+                <div class="card"><i class="fas fa-paint-brush"></i><h3>UI/UX Design</h3><p>User-centered design solutions that create engaging and intuitive experiences.</p><div class="tech-stack"><span>Figma</span><span>Adobe XD</span><span>Sketch</span><span>Prototyping</span></div></div>
+                <div class="card"><i class="fas fa-gamepad"></i><h3>Game Development</h3><p>Interactive games and entertainment applications across multiple platforms.</p><div class="tech-stack"><span>Unity</span><span>C#</span><span>JavaScript</span><span>3D Modeling</span></div></div>
+            </div>
+        </div>
+
+        <!-- Section 3: Envo Product Suite (Dark background #1E2023) -->
+        <div class="envo-section">
+            <div style="text-align: center;">
+                <div class="section-badge">Envo Product Suite</div>
+                <h2 class="section-title">Revolutionary Software Solutions</h2>
+                <p class="section-sub">Introducing Envo - our flagship product series designed to transform how businesses operate in the digital age.</p>
+            </div>
+
+            <div class="envo-grid">
+                <div class="envo-card">
+                    <h3>Envo Cyber Café</h3>
+                    <p>Complete cyber café management system with billing, user management, and monitoring capabilities.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-desktop"></i> Real-time PC monitoring</li>
+                        <li><i class="fas fa-file-invoice-dollar"></i> Automated billing system</li>
+                        <li><i class="fas fa-users"></i> User session management</li>
+                        <li><i class="fas fa-chart-line"></i> Revenue analytics</li>
+                    </ul>
+                    <span class="status">Available</span>
                 </div>
-                <div>
-                    <img src="https://via.placeholder.com/50" alt="Mobile">
-                    <h3>Mobile App Development</h3>
-                    <p>
-                        Native and cross-platform mobile applications for iOS and Android.
-                    </p>
+                <div class="envo-card">
+                    <h3>Envo LMS</h3>
+                    <p>Comprehensive Learning Management System for educational institutions and corporate training.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-book-open"></i> Course management</li>
+                        <li><i class="fas fa-chart-simple"></i> Student progress tracking</li>
+                        <li><i class="fas fa-tasks"></i> Interactive assessments</li>
+                        <li><i class="fas fa-certificate"></i> Certificate generation</li>
+                    </ul>
+                    <span class="status">Available</span>   <!-- Changed to Available -->
                 </div>
-                <div>
-                    <img src="https://via.placeholder.com/50" alt="Tags">
-                    <h3>Full Stack Development</h3>
-                    <p>
-                        End-to-end application development using the MERN stack and modern frameworks.
-                    </p>
+                <div class="envo-card">
+                    <h3>Envo PA</h3>
+                    <p>AI-powered Personal Assistant to streamline your daily tasks and boost productivity.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-calendar-check"></i> Smart task scheduling</li>
+                        <li><i class="fas fa-microphone"></i> Voice commands</li>
+                        <li><i class="fas fa-calendar-alt"></i> Calendar integration</li>
+                        <li><i class="fas fa-bell"></i> Automated reminders</li>
+                    </ul>
+                    <span class="status">Coming Soon</span>
                 </div>
-                <div>
-                    <img src="https://via.placeholder.com/50" alt="Robot">
-                    <h3>AI & Chatbot Development</h3>
-                    <p>
-                        ntelligent chatbots and AI solutions to automate and enhance user experiences.
-                    </p>
+            </div>
+            <div class="inline-btn">
+                <p style="margin-bottom: 16px;">More innovative Envo products coming soon, InshAllah</p>
+                <button class="btn-black">Request Demo</button>   <!-- Black button -->
+            </div>
+        </div>
+
+        <!-- Section 4: About (Normal background) -->
+        <div class="about-section">
+            <div class="about">
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="section-badge">About Far Solutions</div>
+                        <h2>Building Tomorrow's Technology Today</h2>
+                        <p>Founded in 2022 in Karachi, Pakistan, Far Solutions has quickly established itself as a premier software development company. We specialize in creating innovative digital solutions that drive business growth and technological advancement.</p>
+                        <p>Our team of expert developers, designers, and strategists work collaboratively to deliver cutting-edge software solutions. From full-stack web development to AI-powered applications, we're committed to excellence in every project.</p>
+                        <p>The Envo product suite represents our vision for the future - a comprehensive ecosystem of software solutions designed to streamline operations and enhance productivity across various industries.</p>
+                        <button class="btn-primary about-btn">Connect on LinkedIn</button>
+                    </div>
+                    <div style="flex:1"><img src="https://placehold.co/400x300/2a2a2b/036537?text=Team+Image" style="border-radius: 24px; max-width:100%" alt="Team"></div>
                 </div>
-                <div>
-                    <img src="https://via.placeholder.com/50" alt="Paint">
-                    <h3>UI/UX Design</h3>
-                    <p>
-                        User-centered design solutions that create engaging and intuitive experiences.
-                    </p>
+            </div>
+        </div>
+
+        <!-- Section 5: Get In Touch (Dark background #1E2023) -->
+        <div class="contact-section">
+            <div style="text-align: center;">
+                <div class="section-badge">Get In Touch</div>
+                <h2 class="section-title">Ready to Build the Future Together?</h2>
+                <p class="section-sub">Let's discuss your project and explore how Far Solutions can help transform your ideas into innovative digital solutions.</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-left">
+                    <h3><i class="fas fa-building"></i> Company Information</h3>
+                    <p><i class="fas fa-map-pin"></i> Karachi, Sindh, Pakistan</p>
+                    <p><i class="fas fa-calendar-alt"></i> Founded in 2022</p>
+                    <h3 style="margin-top: 28px;"><i class="fab fa-linkedin"></i> Connect With Us</h3>
+                    <p><i class="fab fa-linkedin"></i> LinkedIn Profile</p>
                 </div>
-                <div>
-                    <img src="https://via.placeholder.com/50" alt="People">
-                    <h3>Game Development</h3>
-                    <p>
-                        Interactive games and entertainment applications across multiple platforms.
-                    </p>
+                <div class="contact-right">
+                    <h3>Our Specialties</h3>
+                    <div class="tech-tags">
+                        <span>React.js</span><span>Next.js</span><span>Node.js</span><span>Python</span><span>MERN Stack</span><span>Mobile Apps</span><span>AI Solutions</span><span>UI/UX Design</span>
+                    </div>
+                    <p style="margin-top: 30px;"><strong>Ready to start your project?</strong> Reach out to us through LinkedIn for a consultation.</p>
                 </div>
-            </section>
-        </main>
+            </div>
+            <div class="center-btn">
+                <button class="btn-primary">Start Your Project →</button>
+            </div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>FS</h4>
+                <h4>Far Solutions</h4>
+                <p>We build the future through innovative software solutions.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul><li>Web Development</li><li>Mobile Apps</li><li>AI Solutions</li><li>UI/UX Design</li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Envo Products</h4>
+                <ul><li>Envo Cyber Café</li><li>Envo LMS</li><li>Envo PA (Coming Soon)</li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul><li>About Us</li><li>LinkedIn</li><li>Karachi, Pakistan</li><li>Founded 2022</li></ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2024 Far Solutions. All rights reserved. We build the future.
+        </div>
+    </div>
+</footer>
+
 </body>
-
 </html>
