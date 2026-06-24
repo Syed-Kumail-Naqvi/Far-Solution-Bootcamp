@@ -1,0 +1,29 @@
+Day 13 - Arrays & Objects (Data Processing)
+
+Topics Covered:
+- Arrays: collection of items (ordered, indexed)
+- Array Methods: push, pop, shift, unshift, splice, slice
+- Higher-Order Functions: map, filter, reduce, forEach, find, some, every, sort
+- Objects: key-value pairs
+- Object Methods: dot notation, bracket notation, Object.keys(), Object.values(), Object.entries()
+- Spread Operator (...) for copying arrays/objects
+- Destructuring (array and object)
+
+Key Learnings:
+- map() transforms each element and returns new array.
+- filter() returns new array with elements that pass a condition.
+- reduce() reduces array to a single value (sum, average, etc.).
+- find() returns first element that matches condition.
+- forEach() loops through array without returning anything (just side effects).
+- sort() sorts array in place (use compare function for numbers).
+
+Assignment Done:
+Created a dataset (list of employee objects) and performed:
+1. Filter: employees with salary > 50,000
+2. Map: get list of employee names
+3. Reduce: calculate total salary of all employees
+4. Find: find employee by ID
+5. Sort: sort employees by age
+6. Some / Every: check if any employee is under 25, check if all are experienced
+7. Add/Remove employees from array using push, pop, shift, unshift
+8. Object destructuring and spread operator usage

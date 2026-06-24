@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 13 - Arrays & Objects (Data Processing)</title>
+</head>
+<body>
+    <h1 style="color: #036537; text-align: center; margin-top: 50px;">Day 13 - Arrays & Objects</h1>
+    <p style="text-align: center;">Open Console (F12) to see output.</p>
+
+    <script>
+        // ===============================
+        // 1. DATASET (Array of Objects)
+        // ===============================
+        const employees = [
+            { id: 1, name: "Ali Khan", age: 28, salary: 65000, department: "Engineering", isExperienced: true },
+            { id: 2, name: "Sara Ahmed", age: 34, salary: 82000, department: "Marketing", isExperienced: true },
+            { id: 3, name: "Usman Malik", age: 22, salary: 45000, department: "Design", isExperienced: false },
+            { id: 4, name: "Fatima Noor", age: 29, salary: 72000, department: "Engineering", isExperienced: true },
+            { id: 5, name: "Bilal Hassan", age: 24, salary: 51000, department: "Sales", isExperienced: false },
+            { id: 6, name: "Zara Sheikh", age: 31, salary: 93000, department: "Engineering", isExperienced: true }
+        ];
+
+        console.log("========== ORIGINAL EMPLOYEES DATA ==========");
+        console.table(employees);  // Table view in console
+
+        // ===============================
+        // 2. HIGHER ORDER FUNCTIONS
+        // ===============================
+
+        // --- 2a. filter() ---
+        // Employees with salary > 50,000
+        const highEarners = employees.filter(emp => emp.salary > 50000);
+        console.log("\n--- Filter: High Earners (>50k) ---");
+        console.table(highEarners);
+
+        // --- 2b. map() ---
+        // Get only names of all employees
+        const names = employees.map(emp => emp.name);
+        console.log("\n--- Map: All Employee Names ---");
+        console.log(names);
+
+        // --- 2c. reduce() ---
+        // Calculate total salary
+        const totalSalary = employees.reduce((acc, emp) => acc + emp.salary, 0);
+        const averageSalary = (totalSalary / employees.length).toFixed(2);
+        console.log("\n--- Reduce: Total & Average Salary ---");
+        console.log(`Total Salary: $${totalSalary.toLocaleString()}`);
+        console.log(`Average Salary: $${averageSalary}`);
+
+        // --- 2d. find() ---
+        // Find employee by ID
+        const employeeId = 3;
+        const foundEmp = employees.find(emp => emp.id === employeeId);
+        console.log(`\n--- Find: Employee with ID ${employeeId} ---`);
+        console.log(foundEmp);
+
+        // --- 2e. sort() ---
+        // Sort employees by age (ascending)
+        const sortedByAge = [...employees].sort((a, b) => a.age - b.age);  // spread to copy
+        console.log("\n--- Sort: Employees by Age (Ascending) ---");
+        console.table(sortedByAge);
+
+        // Sort employees by salary (descending)
+        const sortedBySalary = [...employees].sort((a, b) => b.salary - a.salary);
+        console.log("\n--- Sort: Employees by Salary (Descending) ---");
+        console.table(sortedBySalary);
+
+        // --- 2f. some() and every() ---
+        const hasYoungEmployee = employees.some(emp => emp.age < 25);
+        const allExperienced = employees.every(emp => emp.isExperienced === true);
+        console.log("\n--- Some / Every ---");
+        console.log(`Any employee under 25? ${hasYoungEmployee}`);
+        console.log(`All employees experienced? ${allExperienced}`);
+
+        // --- 2g. forEach() ---
+        // Print each employee's name and department
+        console.log("\n--- forEach: Employee Details ---");
+        employees.forEach(emp => {
+            console.log(`${emp.name} works in ${emp.department}`);
+        });
+
+        // ===============================
+        // 3. OBJECT DESTRUCTURING
+        // ===============================
+        console.log("\n--- Object Destructuring ---");
+        const firstEmp = employees[0];
+        const { name, age, salary } = firstEmp;
+        console.log(`Destructured: Name=${name}, Age=${age}, Salary=${salary}`);
+
+        // ===============================
+        // 4. SPREAD OPERATOR (copy arrays)
+        // ===============================
+        console.log("\n--- Spread Operator ---");
+        const newEmployee = { id: 7, name: "Hamza Ali", age: 26, salary: 58000, department: "HR", isExperienced: false };
+        const updatedEmployees = [...employees, newEmployee];
+        console.log(`Added new employee. Total employees: ${updatedEmployees.length}`);
+        console.table(updatedEmployees.slice(-1));  // show last one
+
+        // ===============================
+        // 5. MUTATING METHODS (push, pop, shift, unshift)
+        // ===============================
+        console.log("\n--- Mutating Methods ---");
+        const testArray = ["A", "B", "C"];
+        console.log("Original:", testArray);
+        testArray.push("D");        // adds to end
+        console.log("After push D:", testArray);
+        testArray.pop();            // removes from end
+        console.log("After pop:", testArray);
+        testArray.unshift("Start"); // adds to beginning
+        console.log("After unshift Start:", testArray);
+        testArray.shift();          // removes from beginning
+        console.log("After shift:", testArray);
+
+        // ===============================
+        // 6. OBJECT.KEYS / VALUES / ENTRIES
+        // ===============================
+        console.log("\n--- Object Methods ---");
+        const sample = { name: "Ahmed", city: "Karachi", country: "Pakistan" };
+        console.log("Keys:", Object.keys(sample));
+        console.log("Values:", Object.values(sample));
+        console.log("Entries:", Object.entries(sample));
+
+        // ===============================
+        // 7. SUCCESS MESSAGE
+        // ===============================
+        console.log("\n========== ALL DATA PROCESSING TASKS COMPLETE ==========");
+    </script>
+</body>
+</html>
