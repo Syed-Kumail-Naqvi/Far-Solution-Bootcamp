@@ -1,0 +1,31 @@
+Day 16 - ES6+ (Refactor Previous Code)
+
+Topics Covered:
+- let / const (vs var)
+- Arrow Functions (=>) - implicit return, lexical 'this'
+- Template Literals (`${}`) - cleaner string concatenation
+- Destructuring (Array & Object) - extract values easily
+- Spread Operator (...) - copy arrays/objects, merge
+- Rest Parameters (...args) - handle variable arguments
+- Default Parameters - set default values in functions
+- ES6 Classes (class, constructor, methods)
+- Optional Chaining (?.) - safe object access
+- Nullish Coalescing (??) - fallback for null/undefined
+
+Key Learnings:
+- Arrow functions make callbacks shorter and don't rebind 'this'.
+- Destructuring makes extracting object properties much cleaner.
+- Spread operator is great for immutability (copying without mutation).
+- Classes provide a clean OOP structure for larger applications.
+- Refactoring means improving code structure WITHOUT changing its behavior.
+
+Refactoring Done:
+Took Day 15's Todo App and refactored with:
+1. ES6 Class (TodoApp) to encapsulate all logic.
+2. Arrow functions everywhere (no more function keyword).
+3. Destructuring in render() and methods.
+4. Spread operator for copying arrays.
+5. Optional chaining for safer data access.
+6. Cleaner, shorter, more readable code.
+
+Result: Code is smaller, more organized, and follows modern JavaScript standards.

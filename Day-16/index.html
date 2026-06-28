@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 16 - ES6+ Todo App (Refactored)</title>
+    <style>
+        /* Same styles as Day 15*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1C1C1D;
+            color: #CED6E3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #2a2a2b;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+            color: #036537;
+            margin-bottom: 8px;
+            font-size: 2.2rem;
+        }
+        .sub-heading {
+            text-align: center;
+            color: #F0D5A8;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+            opacity: 0.7;
+        }
+        .input-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .input-row input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #3a3a3b;
+            border-radius: 30px;
+            background: #1C1C1D;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .input-row input:focus {
+            border-color: #036537;
+        }
+        .input-row input::placeholder {
+            color: #777;
+        }
+        .btn-primary {
+            background: #036537;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+        .btn-primary:hover {
+            background: #048c4a;
+            transform: scale(1.02);
+        }
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #3a3a3b;
+            color: #aaa;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .filter-btn:hover {
+            border-color: #036537;
+            color: #fff;
+        }
+        .filter-btn.active {
+            background: #036537;
+            border-color: #036537;
+            color: white;
+        }
+        .task-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        .clear-btn {
+            background: transparent;
+            border: none;
+            color: #c0392b;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        .clear-btn:hover {
+            background: #c0392b20;
+            color: #e74c3c;
+        }
+        #taskList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .task-item {
+            background: #1C1C1D;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .task-item:hover {
+            transform: translateX(4px);
+            border-left-color: #036537;
+        }
+        .task-item.completed {
+            opacity: 0.6;
+        }
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: #777;
+        }
+        .task-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #036537;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .task-text {
+            flex: 1;
+            word-break: break-word;
+            color: #F0D5A8;
+            font-size: 1rem;
+        }
+        .delete-btn {
+            background: transparent;
+            border: none;
+            color: #c0392b;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0 8px;
+            transition: all 0.3s;
+            border-radius: 50%;
+            line-height: 1;
+        }
+        .delete-btn:hover {
+            color: #e74c3c;
+            transform: scale(1.2);
+        }
+        .empty-msg {
+            text-align: center;
+            color: #555;
+            padding: 40px 0;
+            font-style: italic;
+        }
+        .footer-text {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.75rem;
+            color: #555;
+        }
+        .badge-es6 {
+            display: inline-block;
+            background: #03653740;
+            color: #6fcf97;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Todo List App <span class="badge-es6">ES6+ Refactored</span></h1>
+        <p class="sub-heading">Clean, modern, and class-based architecture.</p>
+
+        <form id="taskForm" class="input-row">
+            <input type="text" id="taskInput" placeholder="Write a new task..." required />
+            <button type="submit" class="btn-primary">Add Task</button>
+        </form>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <div class="task-stats">
+            <span id="taskCounter">0 tasks remaining</span>
+            <button class="clear-btn" id="clearCompletedBtn">Clear Completed</button>
+        </div>
+
+        <ul id="taskList"></ul>
+        <p class="footer-text">ES6 Refactor: Classes, Arrow Functions, Destructuring, Spread, Template Literals.</p>
+    </div>
+
+    <script>
+        // ============================================================
+        //  ES6+ TODO APP - Refactored using CLASSES & MODERN SYNTAX
+        // ============================================================
+
+        class TodoApp {
+            // Class properties (using ES6 field declarations)
+            tasks = [];
+            currentFilter = 'all';
+
+            // DOM elements (set in constructor)
+            taskInput = document.getElementById('taskInput');
+            taskForm = document.getElementById('taskForm');
+            taskList = document.getElementById('taskList');
+            taskCounter = document.getElementById('taskCounter');
+            clearCompletedBtn = document.getElementById('clearCompletedBtn');
+            filterBtns = document.querySelectorAll('.filter-btn');
+
+            // ----- Constructor -----
+            constructor() {
+                this.loadTasks();
+                this.render();
+
+                // Bind event listeners
+                this.taskForm.addEventListener('submit', this.handleAddTask.bind(this));
+                this.taskList.addEventListener('click', this.handleListClick.bind(this));
+                this.clearCompletedBtn.addEventListener('click', this.handleClearCompleted.bind(this));
+                this.filterBtns.forEach(btn => {
+                    btn.addEventListener('click', this.handleFilterClick.bind(this));
+                });
+                this.taskInput.addEventListener('keydown', this.handleInputKeydown.bind(this));
+
+                console.log('ES6+ Todo App initialized!');
+            }
+
+            // ----- Local Storage -----
+            loadTasks = () => {
+                const stored = localStorage.getItem('tasks');
+                if (stored) {
+                    try {
+                        this.tasks = JSON.parse(stored);
+                    } catch (e) {
+                        this.tasks = [];
+                    }
+                } else {
+                    // Default sample tasks using spread operator for demonstration
+                    const defaultTasks = [
+                        { id: Date.now() + 1, text: 'Learn ES6+ Features', completed: false },
+                        { id: Date.now() + 2, text: 'Refactor Todo App', completed: false },
+                    ];
+                    this.tasks = [...defaultTasks]; // Spread operator (copying array)
+                }
+            };
+
+            saveTasks = () => {
+                localStorage.setItem('tasks', JSON.stringify(this.tasks));
+            };
+
+            // ----- Getters (using computed properties) -----
+            get activeTasks() {
+                return this.tasks.filter((task) => !task.completed);
+            }
+
+            get completedTasks() {
+                return this.tasks.filter((task) => task.completed);
+            }
+
+            get filteredTasks() {
+                // Using object mapping for cleaner filter logic
+                const filters = {
+                    all: this.tasks,
+                    active: this.activeTasks,
+                    completed: this.completedTasks,
+                };
+                // Optional chaining (?.) - if filter doesn't exist, fallback to all
+                return filters[this.currentFilter] ?? filters.all;
+            }
+
+            // ----- Render (using Destructuring & Template Literals) -----
+            render = () => {
+                const { filteredTasks, tasks, currentFilter } = this;
+
+                // Update counter using template literals
+                const activeCount = this.activeTasks.length;
+                this.taskCounter.textContent = `${activeCount} task${activeCount !== 1 ? 's' : ''} remaining`;
+
+                // Render list
+                if (filteredTasks.length === 0) {
+                    this.taskList.innerHTML = `<li class="empty-msg">No tasks to show. 🎉</li>`;
+                } else {
+                    // Map using arrow function and destructuring in parameters
+                    const listHtml = filteredTasks
+                        .map(({ id, text, completed }) => {
+                            // Using template literals for HTML
+                            return `
+                                <li class="task-item ${completed ? 'completed' : ''}" data-id="${id}">
+                                    <input type="checkbox" ${completed ? 'checked' : ''} class="task-checkbox" />
+                                    <span class="task-text">${this.escapeHtml(text)}</span>
+                                    <button class="delete-btn" title="Delete task">✕</button>
+                                </li>
+                            `;
+                        })
+                        .join(''); // Join array into single string
+
+                    this.taskList.innerHTML = listHtml;
+                }
+
+                // Update active filter buttons (using forEach with arrow)
+                this.filterBtns.forEach((btn) => {
+                    const filter = btn.dataset.filter;
+                    btn.classList.toggle('active', filter === currentFilter);
+                });
+            };
+
+            // ----- Helper (ES6 static-like method) -----
+            escapeHtml = (text) => {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            };
+
+            // ----- CRUD Operations (using ES6 methods) -----
+
+            // Add task using spread operator to create new array (immutability practice)
+            addTask = (text) => {
+                const trimmed = text.trim();
+                if (!trimmed) return false;
+
+                const newTask = {
+                    id: Date.now(),
+                    text: trimmed,
+                    completed: false,
+                };
+                // Using spread to create a new array (immutable pattern)
+                this.tasks = [...this.tasks, newTask];
+                this.saveTasks();
+                this.render();
+                return true;
+            };
+
+            // Delete task using filter (immutable)
+            deleteTask = (id) => {
+                this.tasks = this.tasks.filter((task) => task.id !== id);
+                this.saveTasks();
+                this.render();
+            };
+
+            // Toggle using map (immutable)
+            toggleTask = (id) => {
+                this.tasks = this.tasks.map((task) =>
+                    task.id === id ? { ...task, completed: !task.completed } : task // Spread operator for object copy
+                );
+                this.saveTasks();
+                this.render();
+            };
+
+            // Clear completed using filter
+            clearCompleted = () => {
+                const hasCompleted = this.completedTasks.length > 0;
+                if (!hasCompleted) {
+                    alert('No completed tasks to clear!');
+                    return;
+                }
+                if (confirm('Delete all completed tasks?')) {
+                    this.tasks = this.tasks.filter((task) => !task.completed);
+                    this.saveTasks();
+                    this.render();
+                }
+            };
+
+            // ----- Event Handlers (Arrow functions for lexical 'this') -----
+
+            handleAddTask = (e) => {
+                e.preventDefault(); // Prevent page reload
+                const text = this.taskInput.value;
+                if (this.addTask(text)) {
+                    this.taskInput.value = '';
+                    this.taskInput.focus();
+                } else {
+                    alert('Please enter a valid task.');
+                }
+            };
+
+            handleListClick = (e) => {
+                const target = e.target;
+                const li = target.closest('.task-item');
+                if (!li) return;
+
+                // Using optional chaining to safely get dataset.id, fallback to 0 if null
+                const id = Number(li?.dataset?.id ?? 0);
+                if (!id) return;
+
+                if (target.classList.contains('delete-btn')) {
+                    this.deleteTask(id);
+                } else if (target.classList.contains('task-checkbox')) {
+                    this.toggleTask(id);
+                }
+            };
+
+            handleClearCompleted = () => {
+                this.clearCompleted();
+            };
+
+            handleFilterClick = (e) => {
+                const filter = e.currentTarget.dataset.filter;
+                if (filter === this.currentFilter) return;
+                this.currentFilter = filter;
+                this.render();
+            };
+
+            handleInputKeydown = (e) => {
+                if (e.key === 'Escape') {
+                    this.taskInput.value = '';
+                    this.taskInput.blur();
+                }
+            };
+        }
+
+        // ============================================================
+        //  INITIALIZE APP (Instantiate the class)
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const app = new TodoApp();
+            // Expose app to console for debugging (optional)
+            window.app = app;
+        });
+    </script>
+</body>
+</html>
