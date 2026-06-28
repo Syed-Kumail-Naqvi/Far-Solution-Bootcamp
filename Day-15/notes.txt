@@ -1,0 +1,26 @@
+Day 15 - Events (Interactive Todo App)
+
+Topics Covered:
+- Event Listeners: addEventListener()
+- Event Types: click, submit, input, change, keypress/keydown
+- Event Object: e.preventDefault(), e.target, e.key
+- Event Delegation: handling events on dynamically created elements (parent listener)
+- Form submission handling
+- LocalStorage: setItem(), getItem(), JSON.stringify(), JSON.parse()
+
+Key Learnings:
+- Always use e.preventDefault() on form submit to prevent page reload.
+- Event delegation is important for dynamic lists (listen on parent instead of each child).
+- LocalStorage stores data as strings, so use JSON.stringify() to save, JSON.parse() to load.
+- Use keypress/keydown to listen for Enter key on input fields.
+- Separation of concerns: keep data (tasks array) and UI (render function) separate.
+
+Assignment Done:
+Built a fully functional Todo App with:
+1. Add Task (form submit + Enter key)
+2. Delete Task (per item)
+3. Toggle Complete (click on checkbox)
+4. Filter Tasks (All, Active, Completed)
+5. Clear Completed Tasks
+6. Task Counter (shows remaining tasks)
+7. Persistent data (saves to LocalStorage)

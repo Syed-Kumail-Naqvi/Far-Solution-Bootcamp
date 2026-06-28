@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 15 - Interactive Todo App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1C1C1D;
+            color: #CED6E3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #2a2a2b;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: #036537;
+            margin-bottom: 8px;
+            font-size: 2.2rem;
+        }
+
+        .sub-heading {
+            text-align: center;
+            color: #F0D5A8;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+            opacity: 0.7;
+        }
+
+        /* Input Row */
+        .input-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .input-row input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #3a3a3b;
+            border-radius: 30px;
+            background: #1C1C1D;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-row input:focus {
+            border-color: #036537;
+        }
+
+        .input-row input::placeholder {
+            color: #777;
+        }
+
+        .btn-primary {
+            background: #036537;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            background: #048c4a;
+            transform: scale(1.02);
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #3a3a3b;
+            color: #aaa;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            border-color: #036537;
+            color: #fff;
+        }
+
+        .filter-btn.active {
+            background: #036537;
+            border-color: #036537;
+            color: white;
+        }
+
+        /* Task Counter */
+        .task-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .clear-btn {
+            background: transparent;
+            border: none;
+            color: #c0392b;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .clear-btn:hover {
+            background: #c0392b20;
+            color: #e74c3c;
+        }
+
+        /* Task List */
+        #taskList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .task-item {
+            background: #1C1C1D;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .task-item:hover {
+            transform: translateX(4px);
+            border-left-color: #036537;
+        }
+
+        .task-item.completed {
+            opacity: 0.6;
+        }
+
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: #777;
+        }
+
+        .task-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #036537;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .task-text {
+            flex: 1;
+            word-break: break-word;
+            color: #F0D5A8;
+            font-size: 1rem;
+        }
+
+        .delete-btn {
+            background: transparent;
+            border: none;
+            color: #c0392b;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0 8px;
+            transition: all 0.3s;
+            border-radius: 50%;
+            line-height: 1;
+        }
+
+        .delete-btn:hover {
+            color: #e74c3c;
+            transform: scale(1.2);
+        }
+
+        .empty-msg {
+            text-align: center;
+            color: #555;
+            padding: 40px 0;
+            font-style: italic;
+        }
+
+        /* Footer */
+        .footer-text {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.75rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Todo List App</h1>
+        <p class="sub-heading">Organize your day, build the future.</p>
+
+        <!-- Add Task Row -->
+        <form id="taskForm" class="input-row">
+            <input type="text" id="taskInput" placeholder="Write a new task..." required />
+            <button type="submit" class="btn-primary">Add Task</button>
+        </form>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <!-- Stats & Clear -->
+        <div class="task-stats">
+            <span id="taskCounter">0 tasks remaining</span>
+            <button class="clear-btn" id="clearCompletedBtn">Clear Completed</button>
+        </div>
+
+        <!-- Task List -->
+        <ul id="taskList">
+            <!-- Dynamically rendered -->
+        </ul>
+
+        <p class="footer-text">Data saves automatically in your browser.</p>
+    </div>
+
+    <script>
+        // =============================================
+        // STATE
+        // =============================================
+        let tasks = [];
+        let currentFilter = 'all'; // 'all', 'active', 'completed'
+
+        // DOM references
+        const taskForm = document.getElementById('taskForm');
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+        const taskCounter = document.getElementById('taskCounter');
+        const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        // =============================================
+        // LOCAL STORAGE FUNCTIONS
+        // =============================================
+        function loadTasks() {
+            const stored = localStorage.getItem('tasks');
+            if (stored) {
+                try {
+                    tasks = JSON.parse(stored);
+                } catch (e) {
+                    tasks = [];
+                }
+            } else {
+                // Default sample tasks
+                tasks = [
+                    { id: Date.now() + 1, text: 'Learn JavaScript Events', completed: false },
+                    { id: Date.now() + 2, text: 'Build Todo App', completed: false },
+                ];
+            }
+        }
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        // =============================================
+        // RENDER FUNCTION
+        // =============================================
+        function render() {
+            // 1. Filter tasks
+            let filteredTasks = tasks;
+            if (currentFilter === 'active') {
+                filteredTasks = tasks.filter(t => !t.completed);
+            } else if (currentFilter === 'completed') {
+                filteredTasks = tasks.filter(t => t.completed);
+            }
+
+            // 2. Update counter
+            const activeCount = tasks.filter(t => !t.completed).length;
+            taskCounter.textContent = `${activeCount} task${activeCount !== 1 ? 's' : ''} remaining`;
+
+            // 3. Render list
+            if (filteredTasks.length === 0) {
+                taskList.innerHTML = `<li class="empty-msg">No tasks to show.</li>`;
+                return;
+            }
+
+            let html = '';
+            filteredTasks.forEach(task => {
+                const checkedAttr = task.completed ? 'checked' : '';
+                const completedClass = task.completed ? 'completed' : '';
+                html += `
+                    <li class="task-item ${completedClass}" data-id="${task.id}">
+                        <input type="checkbox" ${checkedAttr} class="task-checkbox" />
+                        <span class="task-text">${escapeHtml(task.text)}</span>
+                        <button class="delete-btn" title="Delete task">✕</button>
+                    </li>
+                `;
+            });
+            taskList.innerHTML = html;
+
+            // Update active filter button styles
+            filterBtns.forEach(btn => {
+                const filter = btn.dataset.filter;
+                if (filter === currentFilter) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Helper: prevent XSS by escaping HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // =============================================
+        // CRUD OPERATIONS
+        // =============================================
+
+        // Add task
+        function addTask(text) {
+            const trimmed = text.trim();
+            if (trimmed === '') return false;
+
+            const newTask = {
+                id: Date.now(),
+                text: trimmed,
+                completed: false,
+            };
+            tasks.push(newTask);
+            saveTasks();
+            render();
+            return true;
+        }
+
+        // Delete task
+        function deleteTask(taskId) {
+            tasks = tasks.filter(t => t.id !== taskId);
+            saveTasks();
+            render();
+        }
+
+        // Toggle complete
+        function toggleTask(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (task) {
+                task.completed = !task.completed;
+                saveTasks();
+                render();
+            }
+        }
+
+        // Clear completed
+        function clearCompleted() {
+            const hasCompleted = tasks.some(t => t.completed);
+            if (!hasCompleted) {
+                alert('No completed tasks to clear!');
+                return;
+            }
+            if (confirm('Delete all completed tasks?')) {
+                tasks = tasks.filter(t => !t.completed);
+                saveTasks();
+                render();
+            }
+        }
+
+        // =============================================
+        // EVENT LISTENERS
+        // =============================================
+
+        // 1. Form Submit (Add Task)
+        taskForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const text = taskInput.value;
+            if (addTask(text)) {
+                taskInput.value = '';
+                taskInput.focus();
+            } else {
+                alert('Please enter a valid task.');
+            }
+        });
+
+        // 2. Event Delegation: List clicks (Checkbox + Delete)
+        taskList.addEventListener('click', function(e) {
+            const target = e.target;
+            const li = target.closest('.task-item');
+            if (!li) return;
+
+            const taskId = parseInt(li.dataset.id, 10);
+
+            // Delete button clicked
+            if (target.classList.contains('delete-btn')) {
+                deleteTask(taskId);
+                return;
+            }
+
+            // Checkbox clicked
+            if (target.classList.contains('task-checkbox')) {
+                toggleTask(taskId);
+                return;
+            }
+        });
+
+        // 3. Clear Completed
+        clearCompletedBtn.addEventListener('click', clearCompleted);
+
+        // 4. Filter Buttons
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                if (filter === currentFilter) return;
+                currentFilter = filter;
+                render();
+            });
+        });
+
+        // 5. Keyboard shortcut: Escape to clear input
+        taskInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                this.value = '';
+                this.blur();
+            }
+        });
+
+        // =============================================
+        // INITIALIZE APP
+        // =============================================
+        loadTasks();
+        render();
+        console.log('Day 15 - Todo App is ready!');
+    </script>
+
+</body>
+</html>
