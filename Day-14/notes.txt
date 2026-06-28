@@ -1,0 +1,36 @@
+Day 14 - DOM Manipulation (Interactive Page)
+
+Topics Covered:
+- What is DOM? (Document Object Model)
+- Selecting Elements:
+  - document.getElementById()
+  - document.querySelector()
+  - document.querySelectorAll()
+- Changing Content:
+  - .textContent
+  - .innerHTML
+- Changing Styles:
+  - .style.property
+  - .classList.add(), .classList.remove(), .classList.toggle()
+- Creating & Removing Elements:
+  - document.createElement()
+  - .appendChild()
+  - .remove()
+  - .removeChild()
+- Event Listeners (basic - detailed in Day 15)
+  - .addEventListener()
+
+Key Learnings:
+- DOM is a tree representation of HTML.
+- Use querySelector for flexibility (CSS selectors).
+- textContent is safer than innerHTML (prevents XSS attacks).
+- classList is better than className for manipulating classes.
+- Always attach event listeners after DOM is loaded (or put script at end of body).
+
+Assignment Done:
+Built an interactive page with:
+1. Add item to list (createElement + appendChild)
+2. Remove item from list (remove or removeChild)
+3. Toggle dark/light theme (classList.toggle)
+4. Change heading text dynamically (textContent)
+5. Click counter (style manipulation)

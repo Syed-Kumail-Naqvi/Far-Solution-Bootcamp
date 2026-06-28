@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 14 - DOM Manipulation</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f0f0f0;
+            color: #1C1C1D;
+            transition: background 0.3s, color 0.3s;
+            border-radius: 20px;
+        }
+
+        h1 {
+            color: #036537;
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 10px 16px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #036537;
+        }
+
+        button {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 30px;
+            background: #036537;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        button:hover {
+            background: #048c4a;
+            transform: scale(1.02);
+        }
+
+        .btn-danger {
+            background: #c0392b;
+        }
+
+        .btn-danger:hover {
+            background: #e74c3c;
+        }
+
+        .btn-secondary {
+            background: #555;
+        }
+
+        .btn-secondary:hover {
+            background: #777;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #f8f9fa;
+            padding: 12px 18px;
+            margin: 8px 0;
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #036537;
+            transition: transform 0.2s;
+        }
+
+        ul li:hover {
+            transform: translateX(5px);
+        }
+
+        ul li .delete-btn {
+            background: transparent;
+            color: #c0392b;
+            padding: 4px 12px;
+            font-size: 1.2rem;
+            border: 1px solid #c0392b;
+            border-radius: 30px;
+        }
+
+        ul li .delete-btn:hover {
+            background: #c0392b;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .counter-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .counter-box span {
+            font-size: 2.5rem;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+            color: #036537;
+        }
+
+        .theme-toggle {
+            background: #1C1C1D;
+            color: white;
+        }
+
+        .theme-toggle:hover {
+            background: #333;
+        }
+
+        /* Dark theme class (toggle karenge) */
+        .dark-theme {
+            background: #1C1C1D;
+            color: #CED6E3;
+        }
+
+        .dark-theme .card {
+            background: #2a2a2b;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .dark-theme ul li {
+            background: #333;
+            border-left-color: #6fcf97;
+            color: #F0D5A8;
+        }
+
+        .dark-theme .input-group input {
+            background: #333;
+            color: white;
+            border-color: #555;
+        }
+
+        .dark-theme .theme-toggle {
+            background: #036537;
+            color: white;
+        }
+
+        .dark-theme .theme-toggle:hover {
+            background: #048c4a;
+        }
+
+        .badge {
+            background: #03653720;
+            color: #036537;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .dark-theme .badge {
+            background: #03653740;
+            color: #6fcf97;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>✨ DOM Manipulation Lab</h1>
+
+    <!-- ===== CARD 1: Dynamic Heading ===== -->
+    <div class="card">
+        <h2 id="mainHeading">Click the button to change me!</h2>
+        <button id="changeHeadingBtn">Change Heading</button>
+    </div>
+
+    <!-- ===== CARD 2: Add/Remove Items ===== -->
+    <div class="card">
+        <h3>📝 My Todo List</h3>
+        <div class="input-group">
+            <input type="text" id="itemInput" placeholder="Enter item..." />
+            <button id="addItemBtn">Add Item</button>
+        </div>
+        <ul id="itemList">
+            <li>Learn DOM <button class="delete-btn" data-item="Learn DOM">✕</button></li>
+            <li>Build a project <button class="delete-btn" data-item="Build a project">✕</button></li>
+        </ul>
+        <div class="action-row">
+            <button class="btn-danger" id="clearAllBtn">Clear All</button>
+            <span class="badge" id="itemCount">Total: 2 items</span>
+        </div>
+    </div>
+
+    <!-- ===== CARD 3: Click Counter ===== -->
+    <div class="card">
+        <h3>🖱️ Click Counter</h3>
+        <div class="counter-box">
+            <button id="decBtn" class="btn-secondary">−</button>
+            <span id="counterDisplay">0</span>
+            <button id="incBtn">+</button>
+        </div>
+        <p style="text-align: center; margin-top: 10px; font-size: 0.9rem; color: #888;">
+            Click the buttons to change the counter!
+        </p>
+    </div>
+
+    <!-- ===== CARD 4: Theme Toggle ===== -->
+    <div class="card" style="text-align: center;">
+        <button id="themeToggleBtn" class="theme-toggle">🌙 Toggle Dark Theme</button>
+    </div>
+
+    <script>
+        // =============================================
+        // 1. DYNAMIC HEADING (textContent)
+        // =============================================
+        const heading = document.getElementById('mainHeading');
+        const changeHeadingBtn = document.getElementById('changeHeadingBtn');
+
+        const headingMessages = [
+            "DOM is awesome!",
+            "You're learning JavaScript!",
+            "Far Solutions Bootcamp!",
+            "Keep going, you're doing great!",
+            "Build the Future!"
+        ];
+        let headingIndex = 0;
+
+        changeHeadingBtn.addEventListener('click', () => {
+            headingIndex = (headingIndex + 1) % headingMessages.length;
+            heading.textContent = headingMessages[headingIndex];
+        });
+
+        // =============================================
+        // 2. ADD / REMOVE ITEMS (createElement, appendChild, remove)
+        // =============================================
+        const itemInput = document.getElementById('itemInput');
+        const addBtn = document.getElementById('addItemBtn');
+        const itemList = document.getElementById('itemList');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        const itemCount = document.getElementById('itemCount');
+
+        // Helper: Update item count
+        function updateCount() {
+            const total = itemList.children.length;
+            itemCount.textContent = `Total: ${total} items`;
+        }
+
+        // Helper: Add delete listener to a single item
+        function attachDeleteListener(li) {
+            const deleteBtn = li.querySelector('.delete-btn');
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    li.remove();  // removes the whole li
+                    updateCount();
+                });
+            }
+        }
+
+        // Helper: Create a new list item
+        function createListItem(text) {
+            const li = document.createElement('li');
+            li.innerHTML = `${text} <button class="delete-btn">✕</button>`;
+            attachDeleteListener(li);
+            return li;
+        }
+
+        // Add item on button click
+        addBtn.addEventListener('click', () => {
+            const text = itemInput.value.trim();
+            if (text === '') {
+                alert('Please enter some text!');
+                return;
+            }
+            const newItem = createListItem(text);
+            itemList.appendChild(newItem);
+            itemInput.value = ''; // clear input
+            itemInput.focus();
+            updateCount();
+        });
+
+        // Add item on Enter key press
+        itemInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addBtn.click();
+            }
+        });
+
+        // Clear all items
+        clearAllBtn.addEventListener('click', () => {
+            if (itemList.children.length === 0) {
+                alert('List is already empty!');
+                return;
+            }
+            if (confirm('Delete all items?')) {
+                itemList.innerHTML = ''; // removes all children
+                updateCount();
+            }
+        });
+
+        // Attach delete listeners to existing items (from HTML)
+        document.querySelectorAll('#itemList li').forEach(li => {
+            attachDeleteListener(li);
+        });
+        updateCount();
+
+        // =============================================
+        // 3. CLICK COUNTER (style manipulation)
+        // =============================================
+        const counterDisplay = document.getElementById('counterDisplay');
+        const incBtn = document.getElementById('incBtn');
+        const decBtn = document.getElementById('decBtn');
+        let count = 0;
+
+        function updateCounter() {
+            counterDisplay.textContent = count;
+            // Change color based on value (style property)
+            if (count > 0) {
+                counterDisplay.style.color = '#036537';
+            } else if (count < 0) {
+                counterDisplay.style.color = '#c0392b';
+            } else {
+                counterDisplay.style.color = '#036537';
+            }
+            // Scale animation (just for fun)
+            counterDisplay.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                counterDisplay.style.transform = 'scale(1)';
+            }, 150);
+        }
+
+        incBtn.addEventListener('click', () => {
+            count++;
+            updateCounter();
+        });
+
+        decBtn.addEventListener('click', () => {
+            count--;
+            updateCounter();
+        });
+
+        // =============================================
+        // 4. THEME TOGGLE (classList.toggle)
+        // =============================================
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            // Change button text
+            if (document.body.classList.contains('dark-theme')) {
+                themeToggleBtn.textContent = '☀️ Toggle Light Theme';
+            } else {
+                themeToggleBtn.textContent = '🌙 Toggle Dark Theme';
+            }
+        });
+
+        // =============================================
+        // 5. EXTRA: Log success
+        // =============================================
+        console.log('Day 14 - DOM Manipulation is working!');
+        console.log('Interact with the page to see DOM changes.');
+    </script>
+</body>
+</html>
