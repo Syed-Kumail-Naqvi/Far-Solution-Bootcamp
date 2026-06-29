@@ -48,4 +48,4 @@ This repository contains my daily assignments, mini projects, and capstone proje
 - Day 42 - Agile Workflow Simulation (Sprint Execution)
 - Day 43 - Capstone Project Development (Production Build)
 - Day 44 - Code Review & Deployment (Fixes & Polishing)
-- Day 45 - Final Assessment (Technical Interview & Review) 
+- Day 45 - Final Assessment (Final Project From Scratch) 
