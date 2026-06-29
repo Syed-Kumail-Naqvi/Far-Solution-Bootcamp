@@ -1,0 +1,23 @@
+Day 19 - Error Handling in JavaScript
+
+Concept:
+Error handling is important because real-world code can fail due to invalid input, bad API responses, or broken logic.
+
+What we learned:
+- try catches runtime errors.
+- throw is used to create custom errors.
+- catch handles the failure safely.
+- finally runs no matter what.
+
+Example:
+try {
+  const data = JSON.parse('{bad json}');
+} catch (error) {
+  console.log('Parsing failed:', error.message);
+}
+
+Why this matters:
+Good error handling prevents the app from crashing and gives users a better experience.
+
+Key takeaway:
+Always plan for failures and show helpful feedback instead of leaving the app broken.

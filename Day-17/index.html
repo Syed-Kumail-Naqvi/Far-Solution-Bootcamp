@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 17 - Promises</title>
+  <style>body{font-family:Segoe UI,sans-serif;background:#111;color:#f5f5f5;padding:24px;} .card{max-width:600px;margin:auto;background:#1f1f1f;padding:24px;border-radius:16px;} button{padding:10px 16px;border:none;border-radius:8px;background:#036537;color:white;cursor:pointer;} #result{margin-top:16px;color:#6fcf97;}</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Day 17 - Promises</h1>
+    <p>Async tasks are handled with promises and resolved step by step.</p>
+    <button id="runBtn">Run Promise Demo</button>
+    <div id="result">Waiting...</div>
+  </div>
+  <script>
+    const runBtn = document.getElementById('runBtn');
+    const result = document.getElementById('result');
+    runBtn.addEventListener('click', () => {
+      result.textContent = 'Loading...';
+      const task = new Promise((resolve) => {
+        setTimeout(() => resolve('Promise completed successfully!'), 1500);
+      });
+      task.then((msg) => {
+        result.textContent = msg;
+      });
+    });
+  </script>
+</body>
+</html>

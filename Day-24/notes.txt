@@ -1,0 +1,25 @@
+Day 24 - Clean Code (Refactor Legacy Code)
+
+Topics Covered:
+- What is Clean Code? (Code that is easy to read, understand, and modify)
+- Key Principles:
+  1. Meaningful Names: Variables and functions should tell you what they do.
+  2. Single Responsibility Principle (SRP): One function should do ONE thing.
+  3. DRY (Don't Repeat Yourself): Avoid duplicate code.
+  4. No Magic Numbers: Use constants (e.g., TAX_RATE instead of 0.05).
+  5. Proper Formatting: Consistent indentation, spacing, and comments.
+  6. Pure Functions: Functions should return values without side effects where possible.
+  7. Comments: Explain WHY, not WHAT (code should explain WHAT).
+
+- Refactoring Steps Applied:
+  1. Renamed vague variables (x, y, arr) to meaningful names (products, totalPrice).
+  2. Split a monolithic function into smaller, focused functions.
+  3. Extracted magic numbers into constants (TAX_RATE, DISCOUNT_RATE).
+  4. Removed duplicated code by creating reusable helper functions.
+  5. Added proper error handling and edge cases.
+
+- Benefits:
+  - Easier to debug.
+  - Easier for other developers to understand.
+  - Easier to extend with new features.
+  - Fewer bugs.

@@ -1,0 +1,26 @@
+Day 41 - State Management Concepts
+
+Topics Covered:
+- Redux vs Context API vs Zustand:
+  - Context API: Good for small-medium apps, built into React.
+  - Redux: Great for large, complex apps with strict patterns (Redux Toolkit recommended).
+  - Zustand: Lightweight and easy-to-use alternative.
+- Redux Toolkit: Simplified Redux with slices and createAsyncThunk.
+- Middleware: Thunk/Saga for async actions.
+
+How it applies to my E-Commerce App:
+- Used Context API for cart management (already implemented).
+- Studied Redux Toolkit to understand the differences and potential migration.
+- Learned the pattern of Actions -> Reducers -> Store.
+
+Key Learnings:
+- For the current project, Context API is sufficient.
+- Redux introduces boilerplate but provides predictability and powerful devtools.
+- Zustand is gaining popularity for its simplicity.
+
+Patterns:
+- Provider Pattern: Wrapping the app in a context provider.
+- Reducer Pattern: Using useReducer for complex local state.
+
+Redux Slice Example:
+const cartSlice = createSlice({ name: 'cart', initialState, reducers: { addItem: ... } });

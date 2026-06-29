@@ -1,0 +1,80 @@
+Day 23 - Debugging (Bug Fixing Challenge)
+
+Topics Covered:
+- What is Debugging? (Process of finding and fixing bugs/errors in code)
+- The Debugging Mindset:
+  - Understand the problem first.
+  - Reproduce the bug consistently.
+  - Isolate the cause (binary search approach).
+  - Fix one thing at a time.
+  - Test thoroughly after fixing.
+
+- Browser DevTools (Most important tool for frontend debugging):
+  - Elements Tab: Inspect HTML/CSS, edit styles live, check box model.
+  - Console Tab: Log messages, run JavaScript snippets, check errors.
+  - Sources Tab: Set breakpoints, step through code, watch variables.
+  - Network Tab: Check API requests/responses, status codes, payloads.
+  - Application Tab: Inspect LocalStorage, SessionStorage, Cookies.
+
+- Console Methods for Debugging:
+  - console.log() : General logging
+  - console.error() : Log errors (red in console)
+  - console.warn() : Log warnings (yellow)
+  - console.table() : Display arrays/objects in tabular format
+  - console.group() / console.groupEnd() : Group related logs
+  - console.time() / console.timeEnd() : Measure execution time
+  - console.trace() : Print stack trace
+
+- Breakpoints (Sources Tab):
+  - Pause execution at a specific line.
+  - Step Over (F10) : Execute next line without going into functions.
+  - Step Into (F11) : Go inside a function call.
+  - Step Out : Finish current function and return to caller.
+  - Watch Expressions : Monitor specific variables in real-time.
+  - Conditional Breakpoints : Break only when a condition is true.
+
+- Common Types of Bugs in JavaScript:
+  1. Syntax Errors: Missing brackets, typos (caught by linters/compilers).
+  2. Reference Errors: Variable not defined (undefined reference).
+  3. Type Errors: Trying to call something that isn't a function, or accessing property of undefined/null.
+  4. Logic Errors: Code runs but gives wrong output (hardest to find).
+  5. Asynchronous Errors: Promise rejections, race conditions, order of execution.
+  6. Network Errors: API failures, CORS issues, incorrect endpoints.
+  7. DOM Errors: Trying to access element before it exists, wrong selector.
+  8. Scope Issues: Variable shadowing, hoisting problems.
+
+- Debugging Strategies:
+  1. Read the error message carefully (it tells you what and where).
+  2. Use console.log() extensively to trace data flow.
+  3. Use breakpoints for complex logic (step through line by line).
+  4. Isolate the problem (comment out code, test in smaller chunks).
+  5. Check the network tab for API issues.
+  6. Use try-catch to handle and log errors gracefully.
+  7. Rubber duck debugging: Explain your code out loud to someone (or a rubber duck).
+
+- Pro Tips:
+  - Use `debugger;` statement in code to trigger a breakpoint automatically.
+  - Use `console.assert(condition, message)` to log only when condition fails.
+  - Always check edge cases (empty arrays, null values, negative numbers, etc.).
+  - Write unit tests to catch bugs before they reach production.
+
+- How this applies to my bootcamp:
+  - I've been using console.log() throughout my JavaScript exercises (Day 11-20).
+  - I've used DevTools Elements tab to inspect and fix CSS issues.
+  - I've used Network tab while building the Weather App (Day 20) to see API responses.
+  - I've encountered and fixed: type errors, undefined values, and logic bugs in my code.
+
+- Real-world debugging workflow:
+  1. User reports a bug.
+  2. Reproduce the bug in development environment.
+  3. Check logs and error messages.
+  4. Add breakpoints or console logs to trace the issue.
+  5. Identify root cause.
+  6. Write a fix.
+  7. Test the fix thoroughly (including edge cases).
+  8. Deploy and verify in production.
+
+Practical Status:
+Conceptual understanding complete.
+Already using DevTools and console.log regularly in practice.
+Fixed several bugs during the bootcamp (Day 2 validation, Day 15 todo app).

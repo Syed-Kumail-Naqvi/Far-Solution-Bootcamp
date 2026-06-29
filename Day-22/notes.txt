@@ -1,0 +1,58 @@
+Day 22 - Branching & Pull Requests (Team Simulation)
+
+Topics Covered:
+- What is a Branch? (Independent line of development)
+- Default branch: main (or master)
+- Why use branches? (Isolate features, bug fixes, experiments)
+- Essential Branching Commands:
+  - git branch : List all branches
+  - git branch <name> : Create a new branch
+  - git checkout <name> : Switch to a branch
+  - git switch <name> : Alternative to checkout (newer)
+  - git checkout -b <name> : Create and switch to new branch
+  - git merge <branch> : Merge changes from another branch into current branch
+  - git branch -d <name> : Delete a branch (local)
+  - git push origin <branch> : Push a branch to remote
+
+- Pull Requests (PR) / Merge Requests:
+  - A PR is a request to merge changes from one branch to another (e.g., feature → main).
+  - It allows team members to review code before merging.
+  - PR workflow: Push branch → Open PR → Review → Approve → Merge → Delete branch.
+
+- Code Review Best Practices:
+  - Keep PRs small and focused (one feature/fix per PR).
+  - Write descriptive PR titles and descriptions.
+  - Check for bugs, edge cases, and code style.
+  - Provide constructive feedback (not personal criticism).
+  - Approve only when you understand the code.
+
+- Simulated Team Workflow:
+  1. Main branch (production-ready code).
+  2. Developer creates a feature branch: git checkout -b feature/login-page
+  3. Makes changes, commits, and pushes: git push origin feature/login-page
+  4. Opens a Pull Request on GitHub (from feature/login-page to main).
+  5. Team lead reviews code, suggests changes.
+  6. Developer makes updates and pushes again (PR updates automatically).
+  7. After approval, PR is merged into main.
+  8. Feature branch is deleted.
+
+- Merge Conflicts:
+  - Happen when two branches change the same lines in the same file.
+  - Git marks the conflict in the file.
+  - Developer must manually resolve (keep one version or combine).
+  - After resolving, add, commit, and continue merge.
+
+- Key Learnings:
+  - Never commit directly to main in a team environment.
+  - Always pull latest main before creating a new branch.
+  - Write clear PR descriptions: "What does this do? Why? How to test?"
+  - Reviewing code is as important as writing code.
+
+- How this applies to my bootcamp:
+  - Since I am working solo on this bootcamp, I haven't used branches or PRs practically yet.
+  - But I understand the workflow conceptually and can apply it in a team.
+  - I can optionally practice by creating a test branch and merging it back to main locally.
+
+Practical Status:
+Theoretical understanding complete.
+Practical simulation pending (can be done locally or in a group project).

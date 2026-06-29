@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 20 - Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Weather Now</h1>
+        <p class="sub-heading">Check current weather for any city</p>
+
+        <!-- Search -->
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Enter city name..." value="Karachi" />
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <!-- Quick suggestions -->
+        <div class="city-suggestions">
+            <button data-city="Karachi">Karachi</button>
+            <button data-city="Lahore">Lahore</button>
+            <button data-city="Islamabad">Islamabad</button>
+            <button data-city="Dubai">Dubai</button>
+            <button data-city="London">London</button>
+            <button data-city="New York">New York</button>
+        </div>
+
+        <!-- Weather Output -->
+        <div class="weather-card" id="weatherCard">
+            <div id="weatherContent">
+                <div class="loading">⏳ Loading weather...</div>
+            </div>
+        </div>
+
+        <p class="footer-text">Powered by Open-Meteo API (No API key required)</p>
+    </div>
+
+    <script>
+        // ============================================================
+        //  CITY COORDINATES MAPPING (Latitude & Longitude)
+        // ============================================================
+        const cityCoordinates = {
+            'karachi': { lat: 24.8607, lon: 67.0011 },
+            'lahore': { lat: 31.5204, lon: 74.3587 },
+            'islamabad': { lat: 33.6844, lon: 73.0479 },
+            'dubai': { lat: 25.2048, lon: 55.2708 },
+            'london': { lat: 51.5074, lon: -0.1278 },
+            'new york': { lat: 40.7128, lon: -74.0060 },
+            'tokyo': { lat: 35.6762, lon: 139.6503 },
+            'sydney': { lat: -33.8688, lon: 151.2093 },
+            'moscow': { lat: 55.7558, lon: 37.6173 },
+            'paris': { lat: 48.8566, lon: 2.3522 },
+        };
+
+        // ============================================================
+        //  WEATHER CODE MAPPING (Open-Meteo)
+        // ============================================================
+        const weatherCodes = {
+            0: { desc: 'Clear sky', icon: '☀️' },
+            1: { desc: 'Mainly clear', icon: '🌤️' },
+            2: { desc: 'Partly cloudy', icon: '⛅' },
+            3: { desc: 'Overcast', icon: '☁️' },
+            45: { desc: 'Fog', icon: '🌫️' },
+            48: { desc: 'Depositing rime fog', icon: '🌫️' },
+            51: { desc: 'Light drizzle', icon: '🌦️' },
+            53: { desc: 'Moderate drizzle', icon: '🌦️' },
+            55: { desc: 'Dense drizzle', icon: '🌧️' },
+            56: { desc: 'Light freezing drizzle', icon: '🌧️' },
+            57: { desc: 'Dense freezing drizzle', icon: '🌧️' },
+            61: { desc: 'Slight rain', icon: '🌦️' },
+            63: { desc: 'Moderate rain', icon: '🌧️' },
+            65: { desc: 'Heavy rain', icon: '🌧️' },
+            66: { desc: 'Light freezing rain', icon: '🌧️' },
+            67: { desc: 'Heavy freezing rain', icon: '🌧️' },
+            71: { desc: 'Slight snow fall', icon: '🌨️' },
+            73: { desc: 'Moderate snow fall', icon: '🌨️' },
+            75: { desc: 'Heavy snow fall', icon: '❄️' },
+            77: { desc: 'Snow grains', icon: '❄️' },
+            80: { desc: 'Slight rain showers', icon: '🌦️' },
+            81: { desc: 'Moderate rain showers', icon: '🌧️' },
+            82: { desc: 'Violent rain showers', icon: '⛈️' },
+            85: { desc: 'Slight snow showers', icon: '🌨️' },
+            86: { desc: 'Heavy snow showers', icon: '❄️' },
+            95: { desc: 'Thunderstorm', icon: '⛈️' },
+            96: { desc: 'Thunderstorm with slight hail', icon: '⛈️' },
+            99: { desc: 'Thunderstorm with heavy hail', icon: '⛈️' },
+        };
+
+        // ============================================================
+        //  DOM REFERENCES
+        // ============================================================
+        const cityInput = document.getElementById('cityInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const weatherContent = document.getElementById('weatherContent');
+
+        // ============================================================
+        //  HELPER FUNCTIONS
+        // ============================================================
+
+        // Get weather description and icon from code
+        function getWeatherInfo(code) {
+            return weatherCodes[code] || { desc: 'Unknown', icon: '❓' };
+        }
+
+        // Get coordinates for a city (case-insensitive)
+        function getCoordinates(cityName) {
+            const normalized = cityName.trim().toLowerCase();
+            return cityCoordinates[normalized] || null;
+        }
+
+        // ============================================================
+        //  MAIN FETCH FUNCTION (using Async/Await with Error Handling)
+        // ============================================================
+        async function fetchWeather(city) {
+            const coords = getCoordinates(city);
+
+            // 1. Validate city
+            if (!coords) {
+                weatherContent.innerHTML = `
+                    <div class="error-msg">
+                        City "${city}" not found. Try Karachi, Lahore, Dubai, London, New York, etc.
+                    </div>
+                `;
+                return;
+            }
+
+            const { lat, lon } = coords;
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=auto`;
+
+            // 2. Show loading state
+            weatherContent.innerHTML = `<div class="loading">Fetching weather for ${city}...</div>`;
+
+            try {
+                // 3. Fetch API call
+                const response = await fetch(url);
+
+                // 4. Check if response is ok (status 200-299)
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                // 5. Parse JSON
+                const data = await response.json();
+
+                // 6. Check if current_weather exists
+                if (!data.current_weather) {
+                    throw new Error('No weather data available for this location.');
+                }
+
+                // 7. Extract data using destructuring
+                const { temperature, windspeed, weathercode } = data.current_weather;
+                const weatherInfo = getWeatherInfo(weathercode);
+
+                // 8. Display weather
+                weatherContent.innerHTML = `
+                    <div class="city-name">${city}</div>
+                    <div class="weather-icon">${weatherInfo.icon}</div>
+                    <div class="temp">${Math.round(temperature)}°C</div>
+                    <div class="description">${weatherInfo.desc}</div>
+                    <div class="extra">
+                        <span><i class="fas fa-wind"></i> Wind: ${windspeed} km/h</span>
+                        <span><i class="fas fa-thermometer-half"></i> Feels like: ${Math.round(temperature)}°C</span>
+                    </div>
+                `;
+
+                console.log(`Weather fetched for ${city}:`, data.current_weather);
+
+            } catch (error) {
+                // 9. Catch any network or parsing errors
+                console.error('Fetch error:', error);
+                weatherContent.innerHTML = `
+                    <div class="error-msg">
+                        Failed to fetch weather. Please check your internet connection.
+                        <br /><small style="color:#777;">${error.message}</small>
+                    </div>
+                `;
+            }
+        }
+
+        // ============================================================
+        //  EVENT HANDLERS
+        // ============================================================
+
+        // Search button click
+        searchBtn.addEventListener('click', () => {
+            const city = cityInput.value.trim();
+            if (city === '') {
+                weatherContent.innerHTML = `<div class="error-msg">⚠️ Please enter a city name.</div>`;
+                return;
+            }
+            fetchWeather(city);
+        });
+
+        // Enter key in input
+        cityInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+
+        // Quick suggestion buttons
+        document.querySelectorAll('.city-suggestions button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const city = btn.dataset.city;
+                cityInput.value = city;
+                fetchWeather(city);
+            });
+        });
+
+        // ============================================================
+        //  INITIAL LOAD (Karachi weather on page load)
+        // ============================================================
+        window.addEventListener('DOMContentLoaded', () => {
+            // Load Karachi by default
+            fetchWeather('Karachi');
+        });
+
+        console.log('Day 20 - Weather App is ready!');
+        console.log('Search for a city or click suggestions.');
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+Day 36 - Tailwind CSS
+
+Topics Covered:
+- Utility-First CSS: Using classes like flex, p-4, text-center instead of custom CSS.
+- Setup: Installing Tailwind in a React project (PostCSS).
+- Configuration: tailwind.config.js to customize colors, fonts, breakpoints.
+- Benefits: Faster prototyping, smaller bundle size (purge unused styles).
+
+How it applies to my E-Commerce App:
+- Migrated part of the SCSS styles to Tailwind.
+- Used @apply directive in SCSS to combine Tailwind utilities.
+- Configured custom theme colors to match Far Solutions branding (#1C1C1D, #036537).
+
+Key Learnings:
+- Tailwind reduces context switching (no separate CSS files for simple styles).
+- Use classes like hover:bg-green-700, md:flex for responsive design without media queries.
+
+Setup commands:
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p

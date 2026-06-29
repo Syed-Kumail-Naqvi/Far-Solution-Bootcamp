@@ -1,0 +1,28 @@
+Day 33 - Project Structure
+
+Topics Covered:
+- Folder Organization: Separating concerns for scalability.
+- Atomic Design (optional): Atoms, Molecules, Organisms, Pages, Templates.
+- Best Practices: Keep components small, separate assets, keep helpers in utils.
+
+How it applies to my E-Commerce App:
+Restructured the project for maintainability:
+
+/src
+  /assets (images, fonts)
+  /components
+    /common (Button, Input, Loader)
+    /layout (Navbar, Footer)
+    /product (ProductCard, ProductGrid)
+  /pages (Home, Category, Product, Cart)
+  /context (CartContext, AuthContext)
+  /hooks (useFetch, useCart)
+  /services (apiClient)
+  /utils (helpers, constants)
+  /styles (global SCSS)
+  App.js
+  index.js
+
+Key Learnings:
+- A clean structure helps other developers (and future you) find code easily.
+- Keeps the codebase scalable.

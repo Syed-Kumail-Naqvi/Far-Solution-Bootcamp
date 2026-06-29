@@ -1,0 +1,24 @@
+Day 38 - Next.js Basics
+
+Topics Covered:
+- What is Next.js? (React framework for production).
+- File-based Routing: Pages are automatically routed based on the file structure (pages/).
+- SSR (Server Side Rendering): getServerSideProps.
+- SSG (Static Site Generation): getStaticProps.
+- API Routes: Building backend endpoints within the same project (/api/*).
+
+How it applies to my E-Commerce App:
+- Explored how the existing React app could benefit from Next.js (SEO, faster pages).
+- Learned the difference between CSR (Client Side Rendering) and SSR.
+- Set up a simple Next.js demo with pages/index.js and pages/products/[id].js.
+
+Key Learnings:
+- Next.js solves SEO issues for React SPAs.
+- getStaticProps is used for data that doesn't change often (e.g., product list).
+- getServerSideProps is used for dynamic data (e.g., user-specific data).
+
+Example:
+export async function getStaticProps() {
+  const res = await fetch('...');
+  return { props: { products: await res.json() } };
+}

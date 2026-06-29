@@ -1,0 +1,24 @@
+Day 34 - Reusable Components
+
+Topics Covered:
+- Building a Component Library: Creating standalone, reusable components.
+- Props Interface: Standardizing props for consistency.
+- Documentation: Using Storybook or simple comments to document components.
+
+How it applies to my E-Commerce App:
+- Created a library of common components:
+  - Button (variants: primary, secondary, danger)
+  - Input (text, email, password with error states)
+  - Modal (reusable overlay)
+  - Card (consistent product display)
+- These components are used across multiple pages, reducing redundancy.
+
+Key Learnings:
+- Reusable components reduce duplication and make updates easier.
+- Use children or render props for flexible composition.
+- Keep components "dumb" (presentational) and pass logic from containers.
+
+Example:
+<Button variant="primary" size="large" onClick={handleClick}>
+  Add to Cart
+</Button>

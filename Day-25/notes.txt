@@ -1,0 +1,45 @@
+Day 25 - Frontend Architecture (Folder Structures & Standards)
+
+Topics Covered:
+- What is Frontend Architecture? (Organizing code, assets, and configurations for scalability)
+- Separation of Concerns (SoC): HTML (Structure), CSS (Style), JS (Behavior)
+- Folder Structure Principles:
+  1. src/ (Source code) – All development files.
+  2. dist/ or build/ (Production) – Minified, compiled files.
+  3. assets/ – Images, fonts, icons.
+  4. styles/ – CSS/SCSS files (global, components, utilities).
+  5. scripts/ or js/ – JavaScript modules.
+     - modules/ – Reusable logic (API calls, DOM helpers, utilities).
+     - app.js – Main entry point.
+  6. components/ – Reusable UI blocks (if using vanilla JS or React).
+  7. pages/ – Page-specific logic (if multi-page).
+
+- Best Practices:
+  - Use index.html as the single entry point (for SPA).
+  - Use `type="module"` in script tags for ES6 imports.
+  - Keep CSS in separate files (global.css, components.css).
+  - Avoid "god files" (files with > 300-400 lines).
+  - Use meaningful file names (e.g., `apiService.js`, `productList.js`).
+
+- Why this matters:
+  - Easier to debug (you know where to look).
+  - Better team collaboration (no merge conflicts on same files).
+  - Easier to scale (add new features without breaking old ones).
+  - Professional impression on code reviews.
+
+- Example Folder Structure (Vanilla JS):
+  project/
+  ├── index.html
+  ├── styles/
+  │   ├── global.css
+  │   └── components.css
+  ├── scripts/
+  │   ├── app.js (main entry)
+  │   ├── modules/
+  │   │   ├── apiService.js
+  │   │   ├── domHelpers.js
+  │   │   ├── productManager.js
+  │   │   └── utils.js
+  ├── assets/
+  │   └── images/
+  └── README.md

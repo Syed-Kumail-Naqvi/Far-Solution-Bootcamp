@@ -1,0 +1,21 @@
+Day 18 - Fetch API
+
+Concept:
+The Fetch API is used to request data from servers or public APIs from the browser.
+
+What we learned:
+- fetch() sends a request to a URL.
+- It returns a Promise.
+- response.json() converts the response into JavaScript objects.
+- We must handle loading states and possible errors.
+
+Example:
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+Practical use:
+We can fetch blog posts, users, weather data, or products and render them dynamically on a page.
+
+Key takeaway:
+Fetching data makes frontend applications interactive and connected to real-world information.

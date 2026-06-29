@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 19 - Error Handling</title>
+  <style>body{font-family:Segoe UI,sans-serif;background:#111;color:#f5f5f5;padding:24px;} .card{max-width:700px;margin:auto;background:#1f1f1f;padding:24px;border-radius:16px;} button{padding:10px 16px;border:none;border-radius:8px;background:#036537;color:white;cursor:pointer;} #result{margin-top:16px;color:#f0d5a8;}</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Day 19 - Error Handling</h1>
+    <p>Handled bad data safely with try/catch and fallback values.</p>
+    <button id="runBtn">Try Parse</button>
+    <div id="result"></div>
+  </div>
+  <script>
+    const runBtn = document.getElementById('runBtn');
+    const result = document.getElementById('result');
+    runBtn.addEventListener('click', () => {
+      const badJson = '{"name": "Far"';
+      try {
+        const data = JSON.parse(badJson);
+        result.textContent = 'Parsed data: ' + JSON.stringify(data);
+      } catch (error) {
+        result.textContent = 'Fallback used because parsing failed: ' + error.message;
+      }
+    });
+  </script>
+</body>
+</html>

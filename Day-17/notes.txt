@@ -1,0 +1,23 @@
+Day 17 - Promises in JavaScript
+
+Concept:
+Promises are used to handle asynchronous operations such as API calls, timers, or file reading without blocking the rest of the code.
+
+What we learned:
+- A Promise represents a future value that may succeed or fail.
+- It has three states: pending, fulfilled, and rejected.
+- .then() is used to handle a successful result.
+- .catch() is used to handle errors.
+
+Example:
+const task = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('Done'), 1000);
+});
+
+task.then((msg) => console.log(msg));
+
+Why this matters:
+Promises make async code cleaner than using nested callbacks. They help us write code that is easier to read and maintain.
+
+Key takeaway:
+Use promises when you want to wait for a task to finish before moving on.

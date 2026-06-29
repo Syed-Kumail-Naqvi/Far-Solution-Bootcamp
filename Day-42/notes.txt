@@ -1,0 +1,25 @@
+Day 42 - Agile Workflow Simulation
+
+Topics Covered:
+- What is Agile? (Iterative development, continuous feedback).
+- Scrum Framework: Sprints (1-4 weeks), Roles (PO, SM, Dev Team).
+- Ceremonies: Standup (daily), Sprint Planning, Sprint Review, Retrospective.
+- Story Points: Estimating complexity (Fibonacci or T-shirt sizes).
+- Kanban: Visualizing work on a board (To Do, In Progress, Review, Done).
+
+How it applies to my E-Commerce App:
+- Simulated a sprint for the E-Commerce app.
+- Broke down features into user stories (e.g., "As a user, I want to add items to the cart").
+- Estimated effort using story points (1, 2, 3, 5, 8).
+- Used a simple Trello board to track progress.
+
+Key Learnings:
+- Communication and transparency are key in Agile.
+- Daily standups keep the team aligned.
+- Retrospectives help the team improve continuously.
+
+Sprint Plan Example:
+- Story 1: Fetch products from API (3 points).
+- Story 2: Display products on homepage (2 points).
+- Story 3: Implement cart (5 points).
+- Story 4: Checkout flow (8 points).

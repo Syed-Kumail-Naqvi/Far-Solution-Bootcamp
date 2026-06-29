@@ -1,0 +1,21 @@
+Day 32 - API Integration
+
+Topics Covered:
+- Fetch API vs Axios: Axios handles JSON automatically and has interceptors.
+- Loading States: Display a spinner or skeleton while fetching.
+- Error Handling: Catch network errors, 404, and 500 errors gracefully.
+- Environment Variables: Store sensitive API keys in .env files.
+- Interceptors: Handle request/response globally (e.g., attach auth token).
+
+How it applies to my E-Commerce App:
+- Used Axios to fetch products and categories from the API.
+- Displayed loading skeletons on the homepage while data is being fetched.
+- Used try-catch to handle API errors and displayed user-friendly error messages.
+- Stored the API base URL in a .env file.
+
+Key Learnings:
+- .env variables must start with REACT_APP_ (e.g., REACT_APP_API_URL).
+- Interceptors can be used to refresh tokens or log requests.
+
+Example:
+const response = await axios.get(`${process.env.REACT_APP_API_URL}/products`);

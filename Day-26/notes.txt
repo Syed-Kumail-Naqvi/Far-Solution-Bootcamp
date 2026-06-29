@@ -1,0 +1,21 @@
+Day 26 - React E-Commerce App Notes
+
+- Developed a React-based e-commerce application featuring home, category, and single product pages.
+- Implemented multiple pages and dynamic routes using React Router DOM.
+- Fetched categories and products data from an API on the Home page.
+- On the Category page, filtered and displayed products based on the selected category.
+- On the Single Product page, added product details, a quantity selector, and 'Add to Cart' functionality.
+- Managed global cart state using Context API.
+- Implemented functionalities to add products to the cart, adjust quantities, and remove items.
+- Styled the UI using SCSS.
+- Utilized Axios and custom hooks for handling API calls.
+- Managed the API base URL and Stripe key securely via environment variables.
+
+Important commands:
+- npm install
+- npm start
+
+Learnings:
+- Learned to structure React components into reusable and modular patterns.
+- Understood dynamic data fetching and route-based UI rendering.
+- Grasped global state management and the complete cart flow.

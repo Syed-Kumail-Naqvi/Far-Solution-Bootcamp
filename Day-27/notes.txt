@@ -1,0 +1,21 @@
+Day 27 - Components & Props
+
+Topics Covered:
+- Components: Reusable, independent pieces of UI (e.g., ProductCard, Navbar, Button).
+- Props: Data passed from parent to child (read-only).
+- Props Destructuring: cleaner syntax ({ title, price, image }) instead of props.title.
+- Default Props: Assigning default values if no props are provided.
+- PropTypes: Type-checking props to catch bugs (optional but recommended).
+
+How it applies to my E-Commerce App:
+- Created reusable components like ProductCard, CategoryCard, and QuantitySelector.
+- Passed product data (name, price, image, id) via props.
+- Destructured props directly in the function parameters for cleaner code.
+
+Key Learnings:
+- Keep components focused (Single Responsibility Principle).
+- Avoid mutating props directly (they are read-only).
+- Use children prop for flexible layouts (e.g., Modal, Layout).
+
+Commands used:
+- npx create-react-app (initially, though I received an existing project)

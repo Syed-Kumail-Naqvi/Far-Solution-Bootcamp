@@ -1,0 +1,25 @@
+Day 40 - Authentication Concepts
+
+Topics Covered:
+- JWT (JSON Web Tokens): How they work (Header, Payload, Signature).
+- Storing Tokens: localStorage (vulnerable to XSS) vs HttpOnly Cookies (more secure).
+- Login/Logout Flow: Sending credentials, receiving token, storing token.
+- Protected Routes: Redirecting unauthenticated users to the login page.
+- Auth Context: Managing user state globally.
+
+How it applies to my E-Commerce App:
+- Implemented a mock authentication flow.
+- Used Context API to store user data globally.
+- Created a protected route wrapper (PrivateRoute component).
+- Stored JWT token in localStorage for persistence (or cookies for production).
+
+Key Learnings:
+- Never store sensitive data in localStorage.
+- For production, use HttpOnly cookies for tokens.
+- Always validate tokens on the backend (never trust client-side).
+
+Example:
+const PrivateRoute = ({ children }) => {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/login" />;
+};

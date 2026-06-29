@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 24 - Clean Code Refactored</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1C1C1D;
+            color: #CED6E3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 550px;
+            width: 100%;
+            background: #2a2a2b;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        h1 { color: #036537; margin-bottom: 4px; }
+        .sub { color: #F0D5A8; opacity: 0.7; margin-bottom: 20px; font-size: 0.9rem; }
+        .input-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+        .input-row input {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 30px;
+            border: 2px solid #3a3a3b;
+            background: #1C1C1D;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            min-width: 120px;
+        }
+        .input-row input:focus { border-color: #036537; }
+        .btn-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            background: #036537;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #048c4a; transform: scale(1.02); }
+        .btn-secondary { background: #3a3a3b; }
+        .btn-secondary:hover { background: #555; }
+        .btn-danger { background: #c0392b; }
+        .btn-danger:hover { background: #e74c3c; }
+
+        #productList { list-style: none; padding: 0; margin: 16px 0; }
+        #productList li {
+            background: #1C1C1D;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            border-radius: 30px;
+            border-left: 4px solid #036537;
+            display: flex;
+            justify-content: space-between;
+            color: #F0D5A8;
+        }
+        #productList li .price-tag { color: #6fcf97; font-weight: bold; }
+
+        .total-box {
+            background: #1C1C1D;
+            padding: 16px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            border: 1px solid #3a3a3b;
+        }
+        .total-box span { color: #6fcf97; font-size: 1.5rem; font-weight: bold; }
+
+        .badge-clean {
+            background: #03653740;
+            color: #6fcf97;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            margin-left: 10px;
+        }
+        .footer { margin-top: 20px; font-size: 0.7rem; color: #555; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Inventory Manager <span class="badge-clean">Clean Code</span></h1>
+        <p class="sub">Refactored with meaningful names, constants, and SRP.</p>
+
+        <!-- Input Row -->
+        <div class="input-row">
+            <input type="text" id="productNameInput" placeholder="Product name..." />
+            <input type="number" id="productPriceInput" placeholder="Price..." />
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-group">
+            <button class="btn" id="addProductBtn">➕ Add Product</button>
+            <button class="btn btn-secondary" id="calculateTotalBtn">Show Total</button>
+            <button class="btn btn-secondary" id="applyDiscountBtn">Apply 10% Off</button>
+            <button class="btn btn-danger" id="clearAllBtn">Clear All</button>
+        </div>
+
+        <!-- Product List -->
+        <ul id="productList"></ul>
+
+        <!-- Total Display -->
+        <div class="total-box" id="totalDisplay">
+            Total: <span id="totalAmount">0.00</span>
+        </div>
+        <p class="footer">Code follows Clean Code principles (SRP, DRY, Constants, Meaningful Names).</p>
+    </div>
+
+    <script>
+        // ==========================================================
+        //  1. CONSTANTS (No Magic Numbers!)
+        // ==========================================================
+        const TAX_RATE = 0.05;         // 5% tax
+        const DISCOUNT_RATE = 0.10;    // 10% discount
+
+        // ==========================================================
+        //  2. STATE (Meaningful variable name)
+        // ==========================================================
+        let products = [];
+
+        // ==========================================================
+        //  3. DOM REFERENCES (Clean, cached)
+        // ==========================================================
+        const productListEl = document.getElementById('productList');
+        const totalAmountEl = document.getElementById('totalAmount');
+        const totalDisplayEl = document.getElementById('totalDisplay');
+        const productNameInput = document.getElementById('productNameInput');
+        const productPriceInput = document.getElementById('productPriceInput');
+
+        // ==========================================================
+        //  4. HELPER / PURE FUNCTIONS (SRP - Single Responsibility)
+        // ==========================================================
+
+        // Calculate subtotal (sum of all product prices)
+        function calculateSubtotal(items) {
+            return items.reduce((sum, item) => sum + item.price, 0);
+        }
+
+        // Calculate total after tax
+        function calculateTotalWithTax(subtotal) {
+            return subtotal * (1 + TAX_RATE);
+        }
+
+        // Calculate total after discount
+        function calculateTotalWithDiscount(subtotal) {
+            const totalWithTax = calculateTotalWithTax(subtotal);
+            return totalWithTax * (1 - DISCOUNT_RATE);
+        }
+
+        // Render the product list (UI update)
+        function renderProducts() {
+            if (products.length === 0) {
+                productListEl.innerHTML = '<li style="color:#555; border-left-color:#555; justify-content:center;">No products added yet.</li>';
+                return;
+            }
+
+            // Using map to generate list items (DRY)
+            const listHtml = products
+                .map((product, index) => {
+                    return `<li>
+                        <span>${product.name}</span>
+                        <span class="price-tag">$${product.price.toFixed(2)}</span>
+                    </li>`;
+                })
+                .join('');
+
+            productListEl.innerHTML = listHtml;
+        }
+
+        // Update total display (with optional flag for discount)
+        function updateTotalDisplay(applyDiscount = false) {
+            if (products.length === 0) {
+                totalAmountEl.textContent = '0.00';
+                totalDisplayEl.innerHTML = `Total: <span id="totalAmount">0.00</span>`;
+                return;
+            }
+
+            const subtotal = calculateSubtotal(products);
+            let finalTotal;
+
+            if (applyDiscount) {
+                finalTotal = calculateTotalWithDiscount(subtotal);
+                totalDisplayEl.innerHTML = `💰 Total (with 10% discount): <span id="totalAmount">${finalTotal.toFixed(2)}</span>`;
+            } else {
+                finalTotal = calculateTotalWithTax(subtotal);
+                totalDisplayEl.innerHTML = `🧾 Total (incl. 5% tax): <span id="totalAmount">${finalTotal.toFixed(2)}</span>`;
+            }
+        }
+
+        // Reset input fields
+        function clearInputs() {
+            productNameInput.value = '';
+            productPriceInput.value = '';
+            productNameInput.focus();
+        }
+
+        // ==========================================================
+        //  5. CRUD OPERATIONS (Action functions)
+        // ==========================================================
+
+        // Add Product
+        function addProduct() {
+            const name = productNameInput.value.trim();
+            const price = parseFloat(productPriceInput.value);
+
+            // Input validation
+            if (name === '' || isNaN(price) || price <= 0) {
+                alert('Please enter a valid product name and price (greater than 0).');
+                return;
+            }
+
+            // Add to state
+            products.push({ name, price });
+
+            // Update UI
+            renderProducts();
+            updateTotalDisplay(false); // Show normal total
+            clearInputs();
+        }
+
+        // Show Total (without discount)
+        function showTotal() {
+            if (products.length === 0) {
+                alert('No products to calculate!');
+                return;
+            }
+            updateTotalDisplay(false);
+        }
+
+        // Apply Discount
+        function applyDiscount() {
+            if (products.length === 0) {
+                alert('No products to discount!');
+                return;
+            }
+            updateTotalDisplay(true);
+        }
+
+        // Clear All Products
+        function clearAllProducts() {
+            if (products.length === 0) return;
+            if (confirm('Delete all products?')) {
+                products = [];
+                renderProducts();
+                updateTotalDisplay(false);
+            }
+        }
+
+        // ==========================================================
+        //  6. EVENT LISTENERS (Clean separation)
+        // ==========================================================
+        document.getElementById('addProductBtn').addEventListener('click', addProduct);
+        document.getElementById('calculateTotalBtn').addEventListener('click', showTotal);
+        document.getElementById('applyDiscountBtn').addEventListener('click', applyDiscount);
+        document.getElementById('clearAllBtn').addEventListener('click', clearAllProducts);
+
+        // Enter key support
+        productNameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') productPriceInput.focus();
+        });
+        productPriceInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addProduct();
+        });
+
+        // ==========================================================
+        //  7. INITIAL RENDER
+        // ==========================================================
+        renderProducts();
+        updateTotalDisplay(false);
+
+        console.log('Clean Code refactored successfully!');
+        console.log('Notice: Constants, SRP, DRY, and meaningful names.');
+    </script>
+</body>
+</html>

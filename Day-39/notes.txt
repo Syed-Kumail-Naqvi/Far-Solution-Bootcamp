@@ -1,0 +1,27 @@
+Day 39 - Next.js Project
+
+Topics Covered:
+- Building a Multi-Page App: Using Next.js routing for Home, Products, About, Contact.
+- Data Fetching: getStaticProps, getServerSideProps, and fetching client-side.
+- Image Component: Automatic optimization with next/image.
+- Head Component: Managing meta tags for SEO.
+- API Routes: Creating custom APIs in pages/api/.
+
+How it applies to my E-Commerce App:
+- Created a Next.js version of the E-Commerce app (conversion from CRA to Next).
+- Used getStaticProps for static generation of product pages.
+- Used next/link for client-side navigation.
+- Created an API route to handle cart operations.
+
+Key Learnings:
+- Next.js provides an excellent developer experience with built-in features.
+- SSR improves performance and SEO dramatically.
+
+Challenges:
+- Converting Context API to work with SSR.
+- Using dynamic routes [slug].js for product pages.
+
+Commands:
+npx create-next-app my-app
+npm run build
+npm run start

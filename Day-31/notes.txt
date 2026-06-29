@@ -1,0 +1,21 @@
+Day 31 - Routing
+
+Topics Covered:
+- React Router DOM: BrowserRouter, Routes, Route, Link, NavLink.
+- Dynamic Routing: /product/:id.
+- Nested Routes: Routing inside a component (e.g., Dashboard with sub-pages).
+- Navigate Component: Programmatic navigation.
+
+How it applies to my E-Commerce App:
+- Set up routes for Homepage (/), Category (/category/:slug), Single Product (/product/:id).
+- Used Link to navigate without page reloads.
+- Extracted route parameters using useParams().
+
+Key Learnings:
+- Always wrap the app in <BrowserRouter>.
+- Define routes inside <Routes>.
+- Use useNavigate() for redirecting after actions (e.g., after adding to cart).
+
+Example:
+<Route path="/product/:id" element={<SingleProduct />} />
+const { id } = useParams();

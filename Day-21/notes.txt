@@ -1,0 +1,48 @@
+Day 21 - Git Basics (Repository Management)
+
+Topics Covered:
+- What is Git? (Distributed Version Control System)
+- Local Repository vs Remote Repository
+- Basic Git Workflow: Working Directory → Staging Area → Local Repo → Remote Repo
+- Essential Commands:
+  - git init : Initialize a new repository
+  - git clone <url> : Clone an existing repository
+  - git status : Check current state of working directory
+  - git add <file> : Stage changes (git add . for all)
+  - git commit -m "message" : Save staged changes with a message
+  - git push : Upload commits to remote repository
+  - git pull : Download changes from remote repository
+  - git log : View commit history
+  - git diff : View changes before staging
+- .gitignore : Ignore unwanted files (node_modules, .env, etc.)
+- Commit Message Best Practices:
+  - feat: new feature
+  - fix: bug fix
+  - docs: documentation only
+  - style: formatting, missing semi-colons, etc.
+  - refactor: code restructuring
+  - test: adding tests
+  - chore: maintenance tasks
+- Atomic Commits: Keep commits small and focused on one thing.
+
+Key Learnings:
+- Git tracks changes, not entire files (snapshots).
+- Always pull before pushing to avoid merge conflicts.
+- Write meaningful commit messages (imperative tense, e.g., "Add login feature").
+- Never commit sensitive data (API keys, passwords).
+- Good commit history helps in code reviews and debugging.
+
+How I applied this:
+- Created a repository for this bootcamp on GitHub.
+- Initialized local repo using git init.
+- Made daily commits with proper messages (feat, fix, docs).
+- Used git add . and git commit regularly.
+- Pushed code to remote GitHub repo after every day's work.
+- Wrote a proper README.md to document the project.
+
+Practical Status:
+Already completed throughout the bootcamp (Day 1 onwards).
+Repository is live on GitHub with daily commits.
+README.md is updated with progress tracking.
+
+Date: 29 June 2026

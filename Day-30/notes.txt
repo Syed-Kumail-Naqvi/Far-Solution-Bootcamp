@@ -1,0 +1,23 @@
+Day 30 - Forms in React
+
+Topics Covered:
+- Controlled Components: Input value tied to state (onChange updates state).
+- Uncontrolled Components: Using refs (useRef) to get input values.
+- Form Validation: Client-side validation (required, email, custom rules).
+- Error Handling: Displaying error messages to the user.
+- Libraries: React Hook Form (simplifies validation and performance).
+
+How it applies to my E-Commerce App:
+- Built a checkout/contact form with controlled inputs.
+- Added validation for required fields and email format.
+- Displayed error messages conditionally.
+- (Optional) Integrated React Hook Form for better performance and less re-renders.
+
+Key Learnings:
+- Controlled forms are easier to manage and validate.
+- Always sanitize user input before sending to the server.
+- Use the 'submit' event on the <form> element to handle submission.
+
+Example:
+const [email, setEmail] = useState('');
+<input value={email} onChange={(e) => setEmail(e.target.value)} />

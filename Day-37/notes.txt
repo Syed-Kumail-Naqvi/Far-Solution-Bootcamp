@@ -1,0 +1,22 @@
+Day 37 - Advanced Tailwind
+
+Topics Covered:
+- Custom Themes: Extending the default theme in tailwind.config.js.
+- Dark Mode: Using the dark: variant.
+- Plugins: Adding forms, typography plugins for better defaults.
+- Responsive Variants: Prefixes like sm:, md:, lg:, xl:.
+- Animations: Using the animate- classes for hover/transitions.
+
+How it applies to my E-Commerce App:
+- Implemented dark mode switching using tailwind's dark: prefix.
+- Added custom gradients and box-shadows to enhance UI.
+- Used the @tailwindcss/forms plugin to style form inputs consistently.
+
+Key Learnings:
+- Tailwind's responsive design is extremely fast with inline breakpoints.
+- Dark mode can be toggled by adding the 'dark' class to the html element.
+
+Example:
+<button className="bg-green-600 dark:bg-green-800 hover:bg-green-700">
+  Add to Cart
+</button>

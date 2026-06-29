@@ -1,0 +1,25 @@
+Day 20 - Mini Project #2: Weather Application
+
+Topics Covered:
+- Fetch API (GET request)
+- Async/Await with try/catch for error handling
+- Handling loading states
+- Parsing JSON response
+- DOM manipulation to display data
+- Handling user input (city search)
+
+Key Learnings:
+- Always use try/catch when using async/await with fetch.
+- Show loading states to improve user experience.
+- Handle errors gracefully (network errors, invalid city).
+- Use `current_weather` from Open-Meteo API (free, no key required).
+- Weather codes mapping: 0=Clear, 1-3=Cloudy, 45-48=Fog, 51-67=Rain, 71-77=Snow, 80-99=Thunderstorm.
+
+Assignment Done:
+Built a Weather App that:
+1. Fetches weather data from Open-Meteo API.
+2. Maps city names to coordinates (Karachi, Lahore, Islamabad, Dubai, London, New York).
+3. Displays: City name, Temperature (°C), Weather description, Wind speed.
+4. Handles loading and error states.
+5. Uses async/await with proper error handling.
+6. Dark theme matching Far Solutions branding (#1C1C1D, #036537).

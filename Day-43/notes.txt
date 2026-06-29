@@ -1,0 +1,26 @@
+Day 43 - Capstone Project Development
+
+Topics Covered:
+- What is a Capstone? (A comprehensive project showcasing all learned skills).
+- Production Build: Creating a build optimized for deployment (npm run build).
+- Environment Variables: Ensuring all secrets are injected at build time.
+- Testing: Writing basic unit tests (Jest, React Testing Library).
+- Documentation: Writing a professional README.md.
+
+How it applies to my E-Commerce App:
+- Prepared the E-Commerce app for production readiness.
+- Ran npm run build to generate the optimized build.
+- Ensured environment variables were properly set.
+- Wrote unit tests for utility functions and components.
+
+Key Learnings:
+- Production build minifies code and optimizes bundle size.
+- Environment variables must be set on the server or build pipeline.
+- Good documentation helps deployers and other developers.
+
+Checklist:
+- [ ] All features working (CRUD, Cart, Checkout).
+- [ ] No console warnings/errors.
+- [ ] Lighthouse performance score > 90.
+- [ ] Responsive on all devices.
+- [ ] README updated with setup instructions.

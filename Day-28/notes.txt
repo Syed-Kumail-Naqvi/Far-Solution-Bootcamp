@@ -1,0 +1,22 @@
+Day 28 - State Management
+
+Topics Covered:
+- State: Data that changes over time (e.g., cart items, user input).
+- Local State: useState hook (component-level).
+- Global State: Context API / Redux (app-wide).
+- Lifting State Up: Moving state to a common parent component to share data between siblings.
+
+How it applies to my E-Commerce App:
+- Used useState for local state (e.g., quantity selector, toggle menu).
+- Used Context API for global cart state to share cart data across the entire app.
+- Lifted state up where necessary to avoid prop drilling.
+
+Key Learnings:
+- State should be as minimal as possible (derived data should not be stored separately).
+- Update state immutably (e.g., using spread operator or state updater functions).
+- Use Context API for medium-sized apps; Redux is for large-scale enterprise apps.
+
+Key Code Pattern:
+const [cartItems, setCartItems] = useState([]);
+// update cart:
+setCartItems(prev => [...prev, newItem]);

@@ -1,0 +1,21 @@
+Day 35 - Performance Optimization
+
+Topics Covered:
+- React.memo: Prevents re-renders of functional components if props haven't changed.
+- useMemo: Memoizes expensive computations.
+- useCallback: Memoizes functions to prevent unnecessary child re-renders.
+- Lazy Loading & Code Splitting: Load components only when needed (React.lazy, Suspense).
+- Bundle Analysis: Using Webpack Bundle Analyzer to check bundle size.
+
+How it applies to my E-Commerce App:
+- Wrapped product list with React.memo to avoid re-renders on search input changes.
+- Memoized the cart total calculation (expensive calculation).
+- Lazy-loaded the Checkout page (only loads when user clicks "Checkout").
+- Used React.Suspense with a fallback loader.
+
+Key Learnings:
+- Over-optimization can hurt code readability. Only optimize when necessary.
+- Use the React DevTools "Profiler" to detect performance bottlenecks.
+
+Example:
+const LazyCheckout = React.lazy(() => import('./pages/Checkout'));

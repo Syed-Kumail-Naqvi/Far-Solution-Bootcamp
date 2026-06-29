@@ -1,0 +1,31 @@
+Day 44 - Code Review and Deployment
+
+Topics Covered:
+- Code Review Checklist:
+  - Does the code work?
+  - Is it readable and maintainable?
+  - Are there bugs or edge cases?
+  - Are there security vulnerabilities?
+  - Are tests passing?
+- Deployment: Deploying a React app to Vercel/Netlify.
+- CI/CD: Continuous Integration/Continuous Deployment (GitHub Actions).
+- Post-Deployment: Monitoring and performance tracking.
+
+How it applies to my E-Commerce App:
+- Conducted a self-code review of the entire project.
+- Fixed linting issues and improved code formatting.
+- Deployed the app to Vercel (or Netlify) via GitHub integration.
+- Verified all routes and features work live.
+
+Key Learnings:
+- Code review is a critical skill for professional developers.
+- CI/CD automates deployment and reduces human error.
+- Always test in a staging environment before production release.
+
+Deployment Steps:
+1. Push code to GitHub.
+2. Connect GitHub repo to Vercel/Netlify.
+3. Add environment variables in the deployment dashboard.
+4. Deploy automatically on push to main branch.
+
+Live URL: [Your deployed app link]
